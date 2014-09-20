@@ -1,0 +1,49 @@
+.bloc { 
+    display: table;
+}
+.bloc:after { 
+	clear:both;
+}
+
+.colonne, .colonnes {
+	float:left;
+	display:inline-block;
+	margin:0;
+	padding: 0 10px;
+	white-space: normal;
+}
+
+/*
+.colonne:nth-of-type(1), .colonnes:nth-of-type(1) {background: red;}
+.colonne:nth-of-type(2), .colonnes:nth-of-type(2) {background: cyan;}
+.colonne:nth-of-type(3), .colonnes:nth-of-type(3) {background: blue;}
+.colonne:nth-of-type(4), .colonnes:nth-of-type(4) {background: yellow;}
+*/
+
+.une {
+	width: 25%;
+}
+.deux {
+	width: 50%;
+}
+.trois {
+	width: 75%;
+}
+.quatre {
+	width: 100%;
+}
+
+.prefix-1 {
+	margin-left: 25%;
+}
+.prefix-2 {
+	margin-left: 50%;
+}
+.prefix-3 {
+	margin-left: 75%;
+}
+
+#flux_textes .bloc {
+	//background: violet;
+	width: 960px;
+}
