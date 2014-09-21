@@ -1,0 +1,27 @@
+.bloc { 
+    display: table;
+}
+.bloc:after { 
+	clear:both;
+}
+
+.colonne, .colonnes {
+	float:left;
+	display:inline-block;
+	margin:0;
+	padding: 0 $gouttiere;
+	white-space: normal;
+}
+
+.une	{ width: 25%; }
+.deux	{ width: 50%; }
+.trois	{ width: 75%; }
+.quatre	{ width: 100%;}
+
+.prefix-1	{ margin-left: 25%; }
+.prefix-2	{ margin-left: 50%; }
+.prefix-3	{ margin-left: 75%;	}
+
+#flux_textes .bloc {
+	width: 100%;
+}

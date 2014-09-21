@@ -1,0 +1,24 @@
+/* typographie_et_couleurs */
+
+// corps de texte principal, couleur de fond
+
+html {
+	font: #{$corps-de-texte-corps}/#{$corps-de-texte-interlignage} $corps-de-texte-fonte, sans-serif;
+	color: $couleur-caracteres;
+	background-color: $couleur-fond;
+}
+
+
+// style secondaire = titrage et navigation
+
+h2, #navigation {
+	font: #{$titrage-corps}/#{$titrage-interlignage} $titrage-fonte, sans-serif;
+}
+
+
+// éléments généraux
+
+ul {
+	list-style: none;
+	padding:0;
+}

@@ -1,0 +1,31 @@
+/* general.scss */
+
+// relatives aux balises générales
+
+html {}
+
+body {}
+
+div {
+	//background-color: white;
+}
+
+// relatif au conteneur
+
+.conteneur {
+	width: 100%;
+	height : 100%;
+	padding : $marge_exterieure;
+}
+
+// relatif au flux de texte
+
+#flux-textes {
+	background-color: lime;
+	width: 100%;
+	height : 100%;
+}
+
+// propriétés générales et utiles
+
+.display-none {display:none;}

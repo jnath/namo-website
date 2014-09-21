@@ -1,18 +1,12 @@
 /* style.scss */
-/* style par défaut = « corps de texte » */
+/* reset.scss */
 html {
-  font: 26px/32px "Swift extra bold", sans-serif; }
-
-/* style secondaire = titrage et navigation */
-h2, #navigation {
-  font: 18px/23px "Swift bold", sans-serif; }
-
-body {
   width: 100%;
   height: 100%; }
 
-/* _reset.scss */
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0; }
 
@@ -21,144 +15,14 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* _typography_and_colors.scss */
+/* fontfaces.scss */
 @font-face {
-  font-family: 'Swift';
-  src: url("../fonts/swift/swift-04-regular-webfont.eot");
-  src: url("../fonts/swift/swift-04-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-04-regular-webfont.woff") format("woff"), url("../fonts/swift/swift-04-regular-webfont.ttf") format("truetype"), url("../fonts/swift/swift-04-regular-webfont.svg#swift_4-regularregular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Swift extra bold italic';
-  src: url("../fonts/swift/swift-08-extrabolditalic-webfont.eot");
-  src: url("../fonts/swift/swift-08-extrabolditalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-08-extrabolditalic-webfont.woff") format("woff"), url("../fonts/swift/swift-08-extrabolditalic-webfont.ttf") format("truetype"), url("../fonts/swift/swift-08-extrabolditalic-webfont.svg#swiftextrabold_italic") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Swift extra bold';
-  src: url("../fonts/swift/swift-08-extrabold-webfont.eot");
-  src: url("../fonts/swift/swift-08-extrabold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-08-extrabold-webfont.woff") format("woff"), url("../fonts/swift/swift-08-extrabold-webfont.ttf") format("truetype"), url("../fonts/swift/swift-08-extrabold-webfont.svg#swiftextrabold") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Swift bold';
-  src: url("../fonts/swift/swift-07-bold-webfont.eot");
-  src: url("../fonts/swift/swift-07-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-07-bold-webfont.woff") format("woff"), url("../fonts/swift/swift-07-bold-webfont.ttf") format("truetype"), url("../fonts/swift/swift-07-bold-webfont.svg#swiftbold") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Swift bold italic';
-  src: url("../fonts/swift/swift-07-bolditalic-webfont.eot");
-  src: url("../fonts/swift/swift-07-bolditalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-07-bolditalic-webfont.woff") format("woff"), url("../fonts/swift/swift-07-bolditalic-webfont.ttf") format("truetype"), url("../fonts/swift/swift-07-bolditalic-webfont.svg#swiftbold_italic") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Swift italic';
-  src: url("../fonts/swift/swift-04-regularitalic-webfont.eot");
-  src: url("../fonts/swift/swift-04-regularitalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/swift/swift-04-regularitalic-webfont.woff") format("woff"), url("../fonts/swift/swift-04-regularitalic-webfont.ttf") format("truetype"), url("../fonts/swift/swift-04-regularitalic-webfont.svg#swiftregular_italic") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans';
-  src: url("../fonts/bitstream_vera/vera-webfont.eot");
-  src: url("../fonts/bitstream_vera/vera-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/vera-webfont.woff") format("woff"), url("../fonts/bitstream_vera/vera-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/vera-webfont.svg#bitstream_vera_sansroman") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans';
-  src: url("../fonts/bitstream_vera/verabd-webfont.eot");
-  src: url("../fonts/bitstream_vera/verabd-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/verabd-webfont.woff") format("woff"), url("../fonts/bitstream_vera/verabd-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/verabd-webfont.svg#bitstream_vera_sansbold") format("svg");
+  font-family: 'namo-font-bold';
+  src: url("../fonts/font-bold-webfont.eot");
+  src: url("../fonts/font-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/font-bold-webfont.woff") format("woff"), url("../fonts/font-bold-webfont.ttf") format("truetype"), url("../fonts/swift/font-bold-webfont.svg#fontbold") format("svg");
   font-weight: bold;
   font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans';
-  src: url("../fonts/bitstream_vera/verait-webfont.eot");
-  src: url("../fonts/bitstream_vera/verait-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/verait-webfont.woff") format("woff"), url("../fonts/bitstream_vera/verait-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/verait-webfont.svg#bitstream_vera_sansoblique") format("svg");
-  font-weight: normal;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans';
-  src: url("../fonts/bitstream_vera/verabi-webfont.eot");
-  src: url("../fonts/bitstream_vera/verabi-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/verabi-webfont.woff") format("woff"), url("../fonts/bitstream_vera/verabi-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/verabi-webfont.svg#bitstream_vera_sansBdOb") format("svg");
-  font-weight: bold;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'Bitstream Vera Serif';
-  src: url("../fonts/bitstream_vera/verase-webfont.eot");
-  src: url("../fonts/bitstream_vera/verase-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/verase-webfont.woff") format("woff"), url("../fonts/bitstream_vera/verase-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/verase-webfont.svg#bitstream_vera_serifroman") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Serif';
-  src: url("../fonts/bitstream_vera/verasebd-webfont.eot");
-  src: url("../fonts/bitstream_vera/verasebd-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/verasebd-webfont.woff") format("woff"), url("../fonts/bitstream_vera/verasebd-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/verasebd-webfont.svg#bitstream_vera_serifbold") format("svg");
-  font-weight: bold;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans Monospace';
-  src: url("../fonts/bitstream_vera/veramobd-webfont.eot");
-  src: url("../fonts/bitstream_vera/veramobd-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/veramobd-webfont.woff") format("woff"), url("../fonts/bitstream_vera/veramobd-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/veramobd-webfont.svg#bitstream_vera_sans_monobold") format("svg");
-  font-weight: bold;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans Monospace';
-  src: url("../fonts/bitstream_vera/veramobi-webfont.eot");
-  src: url("../fonts/bitstream_vera/veramobi-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/veramobi-webfont.woff") format("woff"), url("../fonts/bitstream_vera/veramobi-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/veramobi-webfont.svg#bitstream_vera_sans_monoBdOb") format("svg");
-  font-weight: bold;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans Monospace';
-  src: url("../fonts/bitstream_vera/veramoit-webfont.eot");
-  src: url("../fonts/bitstream_vera/veramoit-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/veramoit-webfont.woff") format("woff"), url("../fonts/bitstream_vera/veramoit-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/veramoit-webfont.svg#bitstream_vera_sans_monoOb") format("svg");
-  font-weight: normal;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'Bitstream Vera Sans Monospace';
-  src: url("../fonts/bitstream_vera/veramono-webfont.eot");
-  src: url("../fonts/bitstream_vera/veramono-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bitstream_vera/veramono-webfont.woff") format("woff"), url("../fonts/bitstream_vera/veramono-webfont.ttf") format("truetype"), url("../fonts/bitstream_vera/veramono-webfont.svg#bitstream_vera_sans_monoroman") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.swift_extra_bold {
-  font-family: 'Swift extra bold'; }
-
-.swift_extra_bold_italic {
-  font-family: 'Swift extra bold italic'; }
-
-.swift_bold {
-  font-family: 'Swift bold'; }
-
-.swift_bold_italic {
-  font-family: 'Swift bold italic'; }
-
-.swift_italic {
-  font-family: 'Swift italic'; }
-
-.georgia {
-  font-family: 'georgia'; }
-
-.vera {
-  font-family: 'Bitstream Vera Serif'; }
-
+/* variables.scss */
 .bloc {
   display: table; }
 
@@ -169,15 +33,9 @@ body {
   float: left;
   display: inline-block;
   margin: 0;
-  padding: 0 10px;
+  padding: 0 1%;
   white-space: normal; }
 
-/*
-.colonne:nth-of-type(1), .colonnes:nth-of-type(1) {background: red;}
-.colonne:nth-of-type(2), .colonnes:nth-of-type(2) {background: cyan;}
-.colonne:nth-of-type(3), .colonnes:nth-of-type(3) {background: blue;}
-.colonne:nth-of-type(4), .colonnes:nth-of-type(4) {background: yellow;}
-*/
 .une {
   width: 25%; }
 
@@ -200,35 +58,42 @@ body {
   margin-left: 75%; }
 
 #flux_textes .bloc {
-  width: 960px; }
+  width: 100%; }
+
+/* general.scss */
+.conteneur {
+  width: 100%;
+  height: 100%;
+  padding: 4%; }
+
+#flux-textes {
+  background-color: lime;
+  width: 100%;
+  height: 100%; }
+
+.display-none {
+  display: none; }
+
+/* typographie_et_couleurs */
+html {
+  font: 28px/36px "namo-font-bold", sans-serif;
+  color: black;
+  background-color: #fff; }
+
+h2, #navigation {
+  font: 18px/24px "namo-font-bold", sans-serif; }
 
 ul {
   list-style: none;
   padding: 0; }
 
-#navigation ul {
-  float: left; }
+/* navigation.scss */
+@media screen and (max-width: 599px) {
+  html {
+    color: lime; }
 
-#navigation ul:last-of-type {
-  float: right;
-  clear: right; }
+  .colonne, .colonnes {
+    float: none;
+    display: block; } }
 
-ul:last-of-type li:first-of-type {
-  visibility: hidden; }
-
-#flux_images {
-  position: fixed;
-  height: 640px;
-  width: 100%; }
-
-#flux_textes {
-  height: 6000px;
-  width: 980px;
-  margin: 0 auto;
-  padding: 0; }
-
-#navigation {
-  width: 460px;
-  transform: rotateZ(-90deg);
-  position: fixed;
-  left: -160px; }
+/*# sourceMappingURL=style.css.map */

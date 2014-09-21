@@ -1,0 +1,12 @@
+/* fontfaces.scss */
+
+@font-face {
+    font-family: 'namo-font-bold';
+    src: url('../fonts/font-bold-webfont.eot');
+    src: url('../fonts/font-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/font-bold-webfont.woff') format('woff'),
+         url('../fonts/font-bold-webfont.ttf') format('truetype'),
+         url('../fonts/swift/font-bold-webfont.svg#fontbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
