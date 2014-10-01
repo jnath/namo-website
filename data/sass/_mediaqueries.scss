@@ -1,7 +1,21 @@
-@media screen and (max-width: 599px) {
-	html {color:lime;}
+/* mediaqueries.scss */
+
+@media screen and (max-width: $breakpoint) {
+	//html {color:lime;}
+	#navigation { display:none;}
+
+	.bloc { display: block;}
+
 	.colonne, .colonnes {
 		float:none;
 		display:block;
+	}
+
+	.une, .deux, .trois, .quatre {
+		width: 100%;
+	}
+
+	.prefix-1, .prefix-2, .prefix-3 {
+		margin-left: 0;
 	}
 }
