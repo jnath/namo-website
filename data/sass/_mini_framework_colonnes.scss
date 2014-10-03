@@ -1,5 +1,6 @@
 .bloc { 
     display: table;
+    //background-color:red;
 }
 .bloc:after { 
 	clear:both;
@@ -8,7 +9,7 @@
 .colonne, .colonnes {
 	float:left;
 	display:inline-block;
-	margin:0;
+	//margin:0;
 	padding: 0 $gouttiere;
 	white-space: normal;
 }
