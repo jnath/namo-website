@@ -10,6 +10,24 @@ div {
 	//background-color: white;
 }
 
+p, li {
+	word-wrap: break-word;
+	hyphens: auto;
+}
+
+h2 {
+	//text-align: center;
+	margin-top: 4em;
+}
+
+#informations-generales li {
+	border-bottom : 1px solid black;
+}
+
+.centrer {
+	text-align: center;
+}
+
 // relatif au conteneur
 
 .conteneur {
@@ -21,9 +39,15 @@ div {
 // relatif au flux de texte
 
 #flux-textes {
-	background-color: lime;
+	//background-color: lime;
 	width: 100%;
 	height : 100%;
+}
+
+// relatif aux images ne s'affichant qu'en format mobile
+
+.bloc + .diaporama{
+	display: none;
 }
 
 // propriétés générales et utiles
