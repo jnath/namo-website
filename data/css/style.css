@@ -97,12 +97,7 @@ ul {
     display: block; } }
 
 
-
-.big {
-  display: block;
-}
-
-.wrapper div {
+.wrapperImg div{
   position: absolute;
 }
 
@@ -113,63 +108,24 @@ ul {
   display: none;
 }
 
-.demo { 
-  width: 800px;
-  font-size: 30px;
-  text-align: center;
-  font-weight: bold;
+.namo-1 {
+  top: 0px;
+  left: 0px;
+}
+.namo-2 {
+  top: 0px;
+  left: 500px;
 }
 
-.demo .arrow {
-  font-size: 20px;
-  animation: point-down 0.5s alternate infinite;
+.namo-3 {
+  top: 0px;
+  left: 1000px;
 }
 
-.description {
-  top: 740px;
-  left: 180px;
-  width: 440px;
+.namo-4 {
+  top: 0px;
+  left: 1500px;
 }
 
-.syntax {
-  top: 1510px;
-  left: 430px;
-  width: 400px;
-}
 
-.scrollbar {
-  top: 1540px;
-  left: 1600px;
-  width: 400px;
-}
 
-.rotations {
-  left: 2185px;
-  top: 660px;
-  width: 460px;
-  transform: rotate(-90deg) translateY(2.5em);
-}
-
-.rotations .upside-down {
-  font-size: 42px;
-  text-align: right;
-  transform: rotate(180deg) translateY(3em);
-}
-
-.source {
-  left: 2200px;
-  top: -800px;
-  width: 400px;
-  transform: rotate(90deg) translateX(50px);
-}
-
-.follow {
-  width: 475px;
-  left: 1100px;
-  top: -950px;
-  transform: rotate(90deg) translateX(50px);
-}
-
-.follow .big {
-  font-size: 40px;
-}

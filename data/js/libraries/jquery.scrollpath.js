@@ -48,20 +48,28 @@
 			scrollBar: true
 		},
 
+		pathInitIndex,
+		pathSetIndex,
+
 		methods = {
 			/* Initializes the plugin */
 			init: function( options ) {
-				if ( this.length > 1 || isInitialized ) $.error( "jQuery.scrollPath can only be initialized on *one* element *once*" );
-				
+				// if ( this.length > 1 || isInitialized ) $.error( "jQuery.scrollPath can only be initialized on *one* element *once*" );
+				if(!pathSetIndex)pathSetIndex = 0;
+				if(!element)element = [];
+				console.log(pathSetIndex);
 				$.extend( settings, options );
 				isInitialized = true;
-				element = this;
-				pathList = pathObject.getPath();
-				initCanvas();
+				element[pathInitIndex] = this;
+				pathList = pathObject[pathSetIndex].getPath();
+				initCanvas(pathObject[pathSetIndex],this);
+
 				initScrollBar();
 				scrollToStep( 0 ); // Go to the first step immediately
-				element.css( "position", "relative" );
-
+				this.css( "position", "relative" );
+				
+				pathSetIndex++;
+				
 				$( document ).on({
 					"mousewheel": scrollHandler,
 					"DOMMouseScroll": ("onmousewheel" in document) ? null : scrollHandler, // Firefox
@@ -80,7 +88,12 @@
 
 			getPath: function( options ) {
 				$.extend( speeds, options );
-				return pathObject || ( pathObject = new Path( speeds.scrollSpeed, speeds.rotationSpeed ));
+				if(!pathInitIndex)pathInitIndex = 0;
+				if(!pathObject)pathObject=[];
+				console.log(pathInitIndex);
+				var rv = pathObject[pathInitIndex] || ( pathObject[pathInitIndex] = new Path( speeds.scrollSpeed, speeds.rotationSpeed ));
+				pathInitIndex++;
+				return rv;
 			},
 
 			scrollTo: function( name, duration, easing, callback ) {
@@ -358,7 +371,7 @@
 	}
 
 	/* Initializes the path canvas */
-	function initCanvas() {
+	function initCanvas(pathObject, element) {
 		if ( !settings.drawPath || !HAS_CANVAS_SUPPORT ) return;
 
 		var canvas,
@@ -377,7 +390,8 @@
 					addClass( "sp-canvas" ).
 					css( style ).
 					prependTo( element );
-		
+
+		console.log(canvas, element);
 		canvas[ 0 ].width = pathObject.getPathWidth();
 		canvas[ 0 ].height = pathObject.getPathHeight();
 		
@@ -492,7 +506,7 @@
 		var cb;
 		if (pathList[ stepParam ] ){
 			cb = pathList[ stepParam ].callback;
-			element.css( makeCSS( pathList[ stepParam ] ) );
+			// element.css( makeCSS( pathList[ stepParam ] ) );
 		}
 		if( scrollHandle ) scrollHandle.css( "top", stepParam / (pathList.length - 1 ) * ( scrollBar.height() - scrollHandle.height() ) + "px" );
 		if ( cb && stepParam !== step && !isAnimating ) cb();
