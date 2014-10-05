@@ -2,6 +2,7 @@ var c = new Center();
 
 function initAndResize(){
 	c.centerY("navigation",-200);
+	positionImg();
 }
 
 function initClickAndScroll(){
@@ -15,30 +16,39 @@ function initClickAndScroll(){
 	});
 }
 
-function initPositionImg(){
+function positionImg(){
 	var texts = $('#flux_textes').children();
 	var leftPosImg = $('#navigation').offset().left + $('#navigation').outerHeight(true);
+
+	$('#flux_images').css({
+	    left: leftPosImg,
+	});
+
 	var i=0;
 	var leftTotal=0;
 	$('#flux_images img').each(function(){
-		var containerWidth = $(texts[i]).outerHeight()
-		
+		var containerWidth = $(texts[i]).outerHeight();
+
 		var imgWith = containerWidth - $(texts[i]).outerHeight();
 		var colonne = $(texts[i]).find('.colonnes')[0];
+		
+		leftTotal+=0;
+
 		var moreLeft = 0;
-
-		leftTotal+=$(texts[i]).offset().top;
-
 		if($(colonne).hasClass('prefix-1')){
-			moreLeft =  ( ( $(this).outerHeight()-imgWith ) /2 ) + $(colonne).outerHeight();
+			moreLeft = $(colonne).outerWidth();
 		}else if($(colonne).hasClass('prefix-2')){
-			moreLeft = ( $(this).outerHeight()-imgWith ) /2 ;
+			moreLeft = 0 ;
 		}
+
+		moreLeft += ( $(colonne).outerWidth() - containerWidth ) / 2;
+
 		// TODO: add for prfix-3
 	    $(this).css({
 	        position: "absolute",
-	        top: $(texts[i]).offset().top + ($(texts[i]).outerHeight()-$(this).outerHeight()),
-	        left: leftTotal + moreLeft,
+	        top: $(texts[i]).offset().top + (containerWidth-$(this).outerHeight()) /2 ,
+	        // left: leftTotal + moreLeft,
+	        left: $(texts[i]).offset().top + moreLeft
 	    });
 	    i++;
 	});
@@ -47,20 +57,18 @@ function initPositionImg(){
 $( document ).ready(function() {
 	initAndResize();
 	initClickAndScroll();
+	$("html").niceScroll();
 
 	var leftPosImg = $('#navigation').offset().left + $('#navigation').outerHeight(true);
-
-	$("html").niceScroll();
 
 	$('#flux_images').css({
 	    position: "absolute",
 	    "z-index": -9998,
-	    left: leftPosImg,
 	    top: 0,
 	    "pointer-events": "none"
 	});
 	
-	initPositionImg();
+	positionImg();
 
 	$( window ).scroll(function() {
 	    $('#flux_images')
