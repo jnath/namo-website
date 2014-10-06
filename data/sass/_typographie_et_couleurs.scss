@@ -8,11 +8,59 @@ html {
 	background-color: $couleur-fond;
 }
 
+//liens
+
+a {
+	color: $couleur-caracteres;
+	text-decoration: none;
+}
+a:link {
+  color: $couleur-liens;
+  text-decoration: underlined;
+}
+.bloc a:link:after {
+	content: "site";
+	margin-left:0.1em;
+	vertical-align: super;
+	line-height: 0;
+	font-size: 0.5em;
+}
+.bloc a:hover {
+	color: white; //$couleur-liens-hover;
+	background-color: black;
+	margin: -0.1em -0.17em;
+	padding: 0.1em 0.17em;
+}
+.bloc a:link:hover:after {
+	content: "web";
+}
+
+a.active:before { content: "— ";}
+a.inactive { color: $couleur-caracteres}
+a.inactive:hover { color: $couleur-liens-hover}
+
+/*
+a.active { color: $couleur-caracteres}
+a.inactive { color: $couleur-liens-hover}
+a.inactive:hover { color: $couleur-caracteres}
+*/
 
 // style secondaire = titrage et navigation
 
-h2, #navigation {
+h1, h2, h3, h4, h5, h6, #navigation {
 	font: #{$titrage-corps}/#{$titrage-interlignage} $titrage-fonte, sans-serif;
+}
+
+#points-de-vente ul li:hover {
+	background-color: black;
+	color: white;
+}
+#points-de-vente ul li:hover a {
+	color: white;
+}
+#points-de-vente ul li:hover a:hover {
+	color: #666;
+	background-color: auto;
 }
 
 
@@ -21,4 +69,15 @@ h2, #navigation {
 ul {
 	list-style: none;
 	padding:0;
+}
+
+.colonne hr, .colonnes hr {
+	margin: 0 -1.40*$gouttiere;
+	position: relative;
+	left: -1px;
+	width: -moz-calc(100% + $gouttiere);
+	width: -webkit-calc(100% + $gouttiere);
+	width: calc(100% + $gouttiere);
+	border: none;
+	border-top: 1px solid black;
 }

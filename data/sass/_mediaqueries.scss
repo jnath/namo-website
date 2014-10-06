@@ -2,6 +2,8 @@
 
 @media screen and (max-width: $breakpoint) {
 	//html {color:lime;}
+	#conteneur {margin-top:-0.5em;}
+
 	#navigation { display:none;}
 
 	.bloc { display: block;}
@@ -9,6 +11,12 @@
 	.colonne, .colonnes {
 		float:none;
 		display:block;
+	}
+	#informations-generales li:first-of-type {
+		padding-top: 0.001em; // bug, à zéro on a plus rien
+	}
+	#informations-generales li:nth-of-type(2) {
+		border-top : 1px solid black;
 	}
 
 	.une, .deux, .trois, .quatre {
@@ -18,35 +26,49 @@
 	.prefix-1, .prefix-2, .prefix-3 {
 		margin-left: 0;
 	}
-
-	#informations-generales li {
-		border-bottom : 1px solid black;
+	#informations-generales li p{
+		margin-bottom: 0;
+		padding-bottom: 1em;
 	}
 
 	#informations-generales li:first-of-type {
-		border-top : 1px solid black;
+		//border-top : 1px solid $couleur-fond;
+		//padding-top: 0.01em;
 	}
 
 	h1, h2, h3, h4, h5, h6, li {
 		text-align: center;
 	}
+
+	#contact{
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: $breakpoint-intermediaire) and (min-width: $breakpoint+1) {
+	#points-de-vente .colonne, #points-de-vente .colonnes{
+		width: 75%;
+		margin-left: 25%;
+	}
+	#informations-generales li:nth-of-type(2) {
+		border-top : 1px solid black;
+	}
 }
 
 @media screen and (max-height: 400px) {
-	html {color:lime;}
-
-	.bloc { background-color:red;}
-
-	#navigation {
-		left: -250px; //fallback
-		left: -webkit-calc(-272px + #{$marge_exterieure});
-		left: -moz-calc(-272px + #{$marge_exterieure});
-		left: calc(-272px + #{$marge_exterieure});
-	}
+	//html {color:lime;}
 
 	#menu {
-		width:300px;
+		width:340px;
 	}
+/*
+	#navigation {
+		left: -250px; //fallback
+		left: -webkit-calc(-272px + #{$grand-fond});
+		left: -moz-calc(-272px + #{$grand-fond});
+		left: calc(-272px + #{$grand-fond});
+	}
+
 
 	#menu .col:nth-of-type(2) p:nth-of-type(-n+2) {
 		display:none;
@@ -56,4 +78,9 @@
 		left: -1.7em;
 		top: 1.5em;
 	}
+*/
 }
+
+/*
+
+ */

@@ -2,11 +2,17 @@
 
 // mise en page
 
-$marge_exterieure : 4%; // marge avec les limites de la fenetre
+// marge avec les limites de la fenetre
+
+$grand-fond : 4%;
+$petit-fond : 4%;
+$blanc-de-tete : 1%;
+$blanc-de-pied : 4%;
 
 $gouttiere : 2%;
 
 $breakpoint : 499px;
+$breakpoint-intermediaire : 875px;
 
 // typographie
 
