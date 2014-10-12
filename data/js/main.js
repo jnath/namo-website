@@ -98,16 +98,14 @@ $( document ).ready(function() {
 		// mousescrollstep: 5,
 	});
 
-	$('.flux_images img').css({
-		'display':'block',
-		'padding-left':'100px',
-		float:'left'
-	});
-
 	$('.flux_images').each(function(){
 		var width = 0;
 		var height = 0;
-		$(this).children().each(function(){
+		$(this).children().one("load").css({
+			'display':'block',
+			'padding-left':'100px',
+			float:'left',
+		}).each(function(){
 			width += $(this).width() + parseInt($(this).css('padding-left'));
 			if(height < $(this).height()){
 				height = $(this).height();
