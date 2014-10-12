@@ -110,6 +110,7 @@ $( document ).ready(function() {
 			if(height < $(this).height()){
 				height = $(this).height();
 			}
+			console.log(this.complete);
 		});
 		$(this).css({
 			left:$( window ).width(),
