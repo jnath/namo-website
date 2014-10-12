@@ -92,31 +92,39 @@ function setPos(target, direction){
 }
 
 
-$( document ).ready(function() {
+$( document ).ready(function(){
+	$('#flux_textes').imagesLoaded( function() {
+	  init();
+	});
+});
+
+function init() {
 
 	$("html").niceScroll({
 		// mousescrollstep: 5,
 	});
 
+	$('.flux_images img').css({
+		'display':'block',
+		'padding-left':'100px',
+		float:'left',
+	});
+
 	$('.flux_images').each(function(){
 		var width = 0;
 		var height = 0;
-		$(this).children().one("load").css({
-			'display':'block',
-			'padding-left':'100px',
-			float:'left',
-		}).each(function(){
+		$(this).children().each(function(){
 			width += $(this).width() + parseInt($(this).css('padding-left'));
 			if(height < $(this).height()){
 				height = $(this).height();
 			}
-			console.log(this.complete);
 		});
 		$(this).css({
 			left:$( window ).width(),
 			width:width + 10,
 			height:height,
 			top:'50%',
+		
 		});
 	});
 
@@ -168,4 +176,4 @@ $( document ).ready(function() {
 		initAndResize();
 	});
 	initAndResize();
-});
+};
