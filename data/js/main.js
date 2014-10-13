@@ -1,7 +1,7 @@
 var c = new Center();
 
 function initAndResize(){
-	c.centerY("navigation",-200);
+	c.centerY("navigation",0);
 	$('.flux_images').each(function(){
 		$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
 	});
@@ -27,21 +27,6 @@ function setPos(target, direction){
 	var rv = null;
 
 	var fixedPos = 0;
-	// if(lastTarget){
-	// 	switch(direction){
-	// 		case 'left':
-	// 			var lastTargetColonne = $(lastTarget).find('.colonnes').last();
-	// 			$(lastTargetColonne).css('position', 'fixed');
-	// 			// fixedPos = $(window).width() - ( lastTargetColonne.offset().left + lastTargetColonne.width() );
-	// 		break;
-	// 		default:
-	// 		case 'top':
-	// 			// fixedPos = ( $(lastTarget).offset().top + $(lastTarget).height() ) - 1;
-	// 			console.log(fixedPos);
-	// 		break;
-	// 	}
-		
-	// }
 
 	switch(direction){
 		case 'left':
@@ -76,9 +61,6 @@ function setPos(target, direction){
 	
 	$(target).attr('data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
 	$(target).attr('data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
-
-	// $(target).attr('data-' + rv.start.pos, 'transform:translate(0,100%)');
-	// $(target).attr('data-' + rv.end.pos, 'transform:translate(0,-100%)');
 
 	inc =  rv.end.pos;
 
