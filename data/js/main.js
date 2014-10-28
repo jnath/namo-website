@@ -1,36 +1,21 @@
-var c = new Center();
-
-function initAndResize(){
-	c.centerY("navigation",0);
-	$('.flux_images').each(function(){
-		$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
-	});
-}
-
-function initClickAndScroll(){
-	$('a[href^="#"]').click(function(){ 
-	    var the_id = $(this).attr("href");
+// function initClickAndScroll(){
+// 	$('a[href^="#"]').click(function(){ 
+// 	    var the_id = $(this).attr("href");
 	    
-	    $('html, body').animate({  
-	        scrollTop:$(the_id).offset().top  
-	    }, 'slow');  
-	    return false;  
-	});
-}
-
-
-
+// 	    $('html, body').animate({  
+// 	        scrollTop:$(the_id).offset().top  
+// 	    }, 'slow');  
+// 	    return false;  
+// 	});
+// }
 
 var inc = 0;
-var lastTarget;
 function setPos(target, direction){
 	var rv = null;
-
 	var fixedPos = 0;
 
 	switch(direction){
 		case 'left':
-
 			rv = {
 				start:{
 					pos: inc + fixedPos ,
@@ -68,16 +53,13 @@ function setPos(target, direction){
 		position:'fixed',
 	});
 
-	lastTarget = target;
-	
 	return rv;
 }
-
 
 $( document ).ready(function(){
 	$('#flux_textes').imagesLoaded( function() {
 	  init();
-	  initClickAndScroll();
+	  // initClickAndScroll();
 	});
 });
 
@@ -155,8 +137,29 @@ function init() {
 		}
 	});
 
+	// init and resize
+
+	var c = new Center();
+
+	function initAndResize(){
+		$('.flux_images').each(function(){
+			$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
+		});
+	}
+
+	function resize(){
+		// TODO : test $(window).width() or $(window).innerWidth()
+		if (window.innerWidth > 499) {
+	        c.centerY("navigation");
+	    }
+	    initAndResize();
+	}
+
 	$( window ).resize(function() {
-		initAndResize();
+		resize();
 	});
+
+	
+	c.centerY("navigation");
 	initAndResize();
 };
