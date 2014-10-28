@@ -18,14 +18,21 @@ h2 {
 	margin-top: 1.5em;
 }
 
-#informations-generales li {
+#points-de-vente div:not(:first-of-type) {
 	border-top : 1px solid black;
+	//margin-top: 0.5em;
 }
-#informations-generales li:nth-of-type(-n+2) {
-	border-top : none;
+
+#points-de-vente h2{
+	margin-bottom: 1.5em;
 }
-#informations-generales li:last-of-type {
-	border-bottom : 1px solid black;
+
+#points-de-vente li:not(:first-of-type) {
+	margin-top: 1em;
+}
+
+#commander div:first-of-type {
+	border-top: 1px solid black;
 }
 
 .centrer {
@@ -61,3 +68,13 @@ h2 {
 // propriétés générales et utiles
 
 .display-none {display:none;}
+
+#actualités {
+	transform-origin: 100% 0%;
+	transform: rotate(-3deg);
+}
+.colonne li, .colonnes li, .colonne h3, .colonnes h3{
+	//transform-origin: 100% 0%;
+	//transform: rotate(-3deg);
+	
+}

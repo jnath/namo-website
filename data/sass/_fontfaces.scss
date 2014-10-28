@@ -10,3 +10,15 @@
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'namo-font-bold';
+    src: url('../fonts/font-bold-italic-webfont.eot');
+    src: url('../fonts/font-bold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/font-bold-italic-webfont.woff2') format('woff2'),
+         url('../fonts/font-bold-italic-webfont.woff') format('woff'),
+         url('../fonts/font-bold-italic-webfont.ttf') format('truetype'),
+         url('../fonts/font-bold-italic-webfont.svg#fontbold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}

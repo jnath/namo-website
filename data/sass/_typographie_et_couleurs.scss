@@ -19,7 +19,7 @@ a:link {
   text-decoration: underlined;
 }
 .bloc a:link:after {
-	content: "site";
+	content: "www";
 	margin-left:0.1em;
 	vertical-align: super;
 	line-height: 0;
@@ -31,9 +31,11 @@ a:link {
 	margin: -0.1em -0.17em;
 	padding: 0.1em 0.17em;
 }
+/*
 .bloc a:link:hover:after {
 	content: "web";
 }
+*/
 
 a.active:before { content: "— ";}
 a.inactive { color: $couleur-caracteres}
@@ -50,11 +52,19 @@ a.inactive:hover { color: $couleur-caracteres}
 h1, h2, h3, h4, h5, h6, #navigation {
 	font: #{$titrage-corps}/#{$titrage-interlignage} $titrage-fonte, sans-serif;
 }
+h3 { font-style: italic; }
 
 #points-de-vente ul li:hover {
 	background-color: black;
 	color: white;
+	margin: -0.1em -0.17em;
+	padding: 0.1em 0.17em;
 }
+
+#points-de-vente ul li:hover:not(:first-of-type) {
+	margin: 0.9em -0.17em -0.1em -0.17em;
+}
+
 #points-de-vente ul li:hover a {
 	color: white;
 }
@@ -69,15 +79,4 @@ h1, h2, h3, h4, h5, h6, #navigation {
 ul {
 	list-style: none;
 	padding:0;
-}
-
-.colonne hr, .colonnes hr {
-	margin: 0 -1.40*$gouttiere;
-	position: relative;
-	left: -1px;
-	width: -moz-calc(100% + $gouttiere);
-	width: -webkit-calc(100% + $gouttiere);
-	width: calc(100% + $gouttiere);
-	border: none;
-	border-top: 1px solid black;
 }

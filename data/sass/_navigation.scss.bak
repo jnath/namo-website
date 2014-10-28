@@ -1,0 +1,229 @@
+/* navigation.scss */
+
+#navigation {
+	position: fixed;
+	top: 0;
+	left:-450px; //-largeur+50px
+	transform-origin: 100% 50%;
+	transform: rotate(-90deg);
+}
+
+#menu {
+	width: 500px;
+}
+
+#menu-gauche {
+	float: left;
+	clear: both;
+}
+#menu-droite {
+	float: right;
+}
+#menu-centre {
+	position: absolute;
+	width: 10%;
+	margin: 0 45%;
+	text-align: center;
+
+	line-height: 0.8em;
+
+	// passer à 100% 50% au dessus de 500px de hauteur du menu
+	transform-origin: 100% 60%;
+	transform: rotate(90deg);
+}
+
+#menu-centre .contenu {
+	position: relative;
+	left: -0.75em;
+}
+
+#menu-centre .contenu p:nth-of-type(n+3){
+	margin:0.4em auto;
+}
+
+#menu-centre .contenu p:first-of-type {
+	position: relative;
+	left: 0.2em;
+}
+#menu-centre .contenu p:nth-of-type(2) {
+	position: relative;
+	top: -0.15em;
+}
+#menu-centre hr {
+	width: 2em;
+	margin:0 auto;
+	padding:0;
+	border: none;
+	border-top: 1px solid black;
+}
+
+.test {
+	transform-origin: 0% 100%;
+	transform: rotate(90deg);
+	width: 400px;
+	//margin: 0 auto;
+}
+
+
+// V2
+
+
+
+#navigation {
+	position: fixed;
+	top:0;
+	height:auto;
+}
+
+.menu {
+    display: table;
+	width: 400px;
+
+	transform-origin: 100% 100%;
+	transform: rotate(-90deg);
+
+	position: relative;
+	top: -4em;
+	left: -16em;
+}
+.menu:after { 
+	clear:both;
+}
+.menu:first-of-type {
+	margin-bottom:-8em;
+}
+
+#menu-gauche {
+	float: left;
+}
+
+#menu-droite {
+	float: right;
+}
+
+
+#menu-centre {
+	text-align: center;
+	line-height: 0.8em;
+
+	position: relative;
+	top:0.8em;
+	left:1em;
+
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+#menu-centre hr {
+	width: 2em;
+	margin:0 auto;
+	padding:0;
+	border: none;
+	border-top: 1px solid black;
+}
+
+// recallage
+
+//on recentre le « n° »
+#menu-centre .contenu p:first-of-type {
+	position: relative;
+	left: 0.2em;
+}
+
+//recallage de la séparation #1/#2
+#menu-centre .contenu p:nth-of-type(n+3){
+	margin:0.4em auto;
+}
+
+//recallage de la flêche
+#menu-centre .contenu p:nth-of-type(2) {
+	position: relative;
+	top: -0.15em;
+}
+
+
+
+// 3
+
+
+/* navigation.scss */
+
+#navigation {
+	background-color: green;
+	border: 1px solid red;
+}
+
+#test {
+	width: 50px;
+	height:50px;
+	background-color: red;
+	color: lime;
+
+
+	position: fixed;
+	top:0px;
+	left:0px;
+}
+
+.menu {
+    display: table;
+	width: 400px;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	//transform: rotate(-90deg);
+	
+}
+
+#menu-gauche {
+	float: left;
+}
+#menu-droite {
+	float: right;
+}
+
+.menu:after, #menu-droite:after, #navigatio:after{ 
+	clear:both;
+}
+
+#menu-centre {
+	text-align: center;
+	line-height: 0.8em;
+
+	position: relative;
+	top: -1em;
+	left:1.5em;
+	//transform: rotate(90deg);
+}
+
+#menu-centre hr {
+	width: 2em;
+	margin:0 auto;
+	padding:0;
+	border: none;
+	border-top: 1px solid black;
+}
+
+// recallage
+
+//on recentre le « n° »
+#menu-centre .contenu p:first-of-type {
+	position: relative;
+	left: 0.2em;
+}
+
+//recallage de la séparation #1/#2
+#menu-centre .contenu p:nth-of-type(n+3){
+	margin:0.4em auto;
+}
+
+//recallage de la flêche
+#menu-centre .contenu p:nth-of-type(2) {
+	position: relative;
+	top: -0.15em;
+}

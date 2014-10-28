@@ -1,5 +1,13 @@
 /* mediaqueries.scss */
 
+@media screen and (min-width: 1200px) {
+#conteneur {
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+}
+
 @media screen and (max-width: $breakpoint) {
 	//html {color:lime;}
 	#conteneur {margin-top:-0.5em;}
@@ -12,11 +20,8 @@
 		float:none;
 		display:block;
 	}
-	#informations-generales li:first-of-type {
-		padding-top: 0.001em; // bug, à zéro on a plus rien
-	}
-	#informations-generales li:nth-of-type(2) {
-		border-top : 1px solid black;
+	#informations-generales div:first-of-type {
+		margin-bottom: 0.9em;
 	}
 
 	.une, .deux, .trois, .quatre {
@@ -40,18 +45,14 @@
 		text-align: center;
 	}
 
-	#contact{
+	#contact, .commander{
 		text-align: center;
 	}
-}
-
-@media screen and (max-width: $breakpoint-intermediaire) and (min-width: $breakpoint+1) {
-	#points-de-vente .colonne, #points-de-vente .colonnes{
-		width: 75%;
-		margin-left: 25%;
+	#actualités * {
+		text-align: left;
 	}
-	#informations-generales li:nth-of-type(2) {
-		border-top : 1px solid black;
+	#actualités {
+		border-bottom: 1px solid black;
 	}
 }
 
