@@ -4,6 +4,7 @@
 
 function center() {
 	var self = this;
+	console.log("centrage();");
 }
 
 center.prototype.centerY = function(target,offset) {
@@ -30,8 +31,3 @@ center.prototype.center = function(target,xOffset,yOffset) {
 	this.centerY(target,yOffset);
 	this.centerX(target,xOffset);
 };
-
-// creating object, targeting, and go.
-
-var c = new center();
-c.centerY("navigation",-200);

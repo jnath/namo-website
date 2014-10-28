@@ -22,6 +22,12 @@ body {
   src: url("../fonts/font-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/font-bold-webfont.woff") format("woff"), url("../fonts/font-bold-webfont.ttf") format("truetype"), url("../fonts/swift/font-bold-webfont.svg#fontbold") format("svg");
   font-weight: bold;
   font-style: normal; }
+@font-face {
+  font-family: 'namo-font-bold';
+  src: url("../fonts/font-bold-italic-webfont.eot");
+  src: url("../fonts/font-bold-italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/font-bold-italic-webfont.woff2") format("woff2"), url("../fonts/font-bold-italic-webfont.woff") format("woff"), url("../fonts/font-bold-italic-webfont.ttf") format("truetype"), url("../fonts/font-bold-italic-webfont.svg#fontbold_italic") format("svg");
+  font-weight: bold;
+  font-style: italic; }
 /* variables.scss */
 .bloc {
   display: table; }
@@ -67,14 +73,17 @@ p, li {
 h2 {
   margin-top: 1.5em; }
 
-#informations-generales li {
+#points-de-vente div:not(:first-of-type) {
   border-top: 1px solid black; }
 
-#informations-generales li:nth-of-type(-n+2) {
-  border-top: none; }
+#points-de-vente h2 {
+  margin-bottom: 1.5em; }
 
-#informations-generales li:last-of-type {
-  border-bottom: 1px solid black; }
+#points-de-vente li:not(:first-of-type) {
+  margin-top: 1em; }
+
+#commander div:first-of-type {
+  border-top: 1px solid black; }
 
 .centrer {
   text-align: center; }
@@ -97,6 +106,10 @@ h2 {
 .display-none {
   display: none; }
 
+#actualités {
+  transform-origin: 100% 0%;
+  transform: rotate(-3deg); }
+
 /* typographie_et_couleurs */
 html {
   font: 28px/36px "namo-font-bold", sans-serif;
@@ -112,7 +125,7 @@ a:link {
   text-decoration: underlined; }
 
 .bloc a:link:after {
-  content: "site";
+  content: "www";
   margin-left: 0.1em;
   vertical-align: super;
   line-height: 0;
@@ -124,9 +137,11 @@ a:link {
   margin: -0.1em -0.17em;
   padding: 0.1em 0.17em; }
 
+/*
 .bloc a:link:hover:after {
-  content: "web"; }
-
+	content: "web";
+}
+*/
 a.active:before {
   content: "— "; }
 
@@ -144,9 +159,17 @@ a.inactive:hover { color: $couleur-caracteres}
 h1, h2, h3, h4, h5, h6, #navigation {
   font: 18px/24px "namo-font-bold", sans-serif; }
 
+h3 {
+  font-style: italic; }
+
 #points-de-vente ul li:hover {
   background-color: black;
-  color: white; }
+  color: white;
+  margin: -0.1em -0.17em;
+  padding: 0.1em 0.17em; }
+
+#points-de-vente ul li:hover:not(:first-of-type) {
+  margin: 0.9em -0.17em -0.1em -0.17em; }
 
 #points-de-vente ul li:hover a {
   color: white; }
@@ -159,16 +182,6 @@ ul {
   list-style: none;
   padding: 0; }
 
-.colonne hr, .colonnes hr {
-  margin: 0 -2.8%;
-  position: relative;
-  left: -1px;
-  width: -moz-calc(100% + $gouttiere);
-  width: -webkit-calc(100% + $gouttiere);
-  width: calc(100% + $gouttiere);
-  border: none;
-  border-top: 1px solid black; }
-
 /* navigation.scss */
 #navigation {
   position: fixed;
@@ -178,6 +191,10 @@ ul {
   left: -moz-calc(-201px + 4%);
   left: calc(-201px + 4%);
   width: 500px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
   transform: rotate(-90deg); }
 
 #navigation * {
@@ -198,6 +215,10 @@ ul {
 
 .col:last-of-type {
   text-align: center;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
   position: relative;
   top: -0.7em;
@@ -221,6 +242,11 @@ ul {
   top: -0.14em; }
 
 /* mediaqueries.scss */
+@media screen and (min-width: 1200px) {
+  #conteneur {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto; } }
 @media screen and (max-width: 499px) {
   #conteneur {
     margin-top: -0.5em; }
@@ -235,11 +261,8 @@ ul {
     float: none;
     display: block; }
 
-  #informations-generales li:first-of-type {
-    padding-top: 0.001em; }
-
-  #informations-generales li:nth-of-type(2) {
-    border-top: 1px solid black; }
+  #informations-generales div:first-of-type {
+    margin-bottom: 0.9em; }
 
   .une, .deux, .trois, .quatre {
     width: 100%; }
@@ -254,15 +277,14 @@ ul {
   h1, h2, h3, h4, h5, h6, li {
     text-align: center; }
 
-  #contact {
-    text-align: center; } }
-@media screen and (max-width: 875px) and (min-width: 500px) {
-  #points-de-vente .colonne, #points-de-vente .colonnes {
-    width: 75%;
-    margin-left: 25%; }
+  #contact, .commander {
+    text-align: center; }
 
-  #informations-generales li:nth-of-type(2) {
-    border-top: 1px solid black; } }
+  #actualités * {
+    text-align: left; }
+
+  #actualités {
+    border-bottom: 1px solid black; } }
 @media screen and (max-height: 400px) {
   #menu {
     width: 340px; }

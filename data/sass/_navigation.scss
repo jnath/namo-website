@@ -11,6 +11,10 @@
 	left: calc(-201px + #{$grand-fond});
 
 	width: 500px;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
 	transform: rotate(-90deg);
 }
 
@@ -31,6 +35,10 @@
 }
 .col:last-of-type{
 	text-align: center;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
 	position:relative;
 	top:-0.7em;
