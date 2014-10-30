@@ -1,13 +1,21 @@
-// function initClickAndScroll(){
-// 	$('a[href^="#"]').click(function(){ 
-// 	    var the_id = $(this).attr("href");
-	    
-// 	    $('html, body').animate({  
-// 	        scrollTop:$(the_id).offset().top  
-// 	    }, 'slow');  
-// 	    return false;  
-// 	});
-// }
+function initClickAndScroll(){
+	$('a[href^="#"]').click(function(){ 
+	    var the_id = $(this).attr("href");
+	    var target;
+	    var more=0;
+	    if(!$(the_id).hasClass('anim')){
+	    	target = $(the_id).parent('.anim');
+	    	more = $(the_id).position().top - $(window).height() / 2;
+	    }else{
+	    	target =  $(the_id);
+	    }
+	    var pos = $.data(target[0], 'position');
+	    $('html, body').animate({  
+	        scrollTop:pos.start.pos + $(window).height() / 2 + more
+	    }, 'slow');
+	    return false;  
+	});
+}
 
 var inc = 0;
 function setPos(target, direction){
@@ -44,6 +52,8 @@ function setPos(target, direction){
 			break;
 	}
 	
+	$.data(target, 'position', rv);
+
 	$(target).attr('data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
 	$(target).attr('data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
 
@@ -59,7 +69,7 @@ function setPos(target, direction){
 $( document ).ready(function(){
 	$('#flux_textes').imagesLoaded( function() {
 	  init();
-	  // initClickAndScroll();
+	  initClickAndScroll();
 	});
 });
 
