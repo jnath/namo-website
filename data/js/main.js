@@ -83,9 +83,11 @@ function removeData(){
 }
 
 $( document ).ready(function(){
+	$('body').hide();
 	$('#flux_textes').imagesLoaded( function() {
-	  init();
-	  initClickAndScroll();
+		$('body').show();
+	  	init();
+	  	initClickAndScroll();
 	});
 });
 
