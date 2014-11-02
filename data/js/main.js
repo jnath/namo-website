@@ -94,6 +94,8 @@ $( document ).ready(function(){
 	});
 });
 
+var logoPos;
+
 function processAnim(){
 	$('.flux_images').each(function(){
 		var width = 0;
@@ -116,6 +118,9 @@ function processAnim(){
 	$('.commander').css({
 		height:$(window).height(),
 	});
+
+	addAttr($('#logo')[0], 'data-0','top:'+logoPos.top+'px');
+	addAttr($('#logo')[0], 'data-500','top:'+(-logoPos.top)+'px');
 
 	$('.anim').each(function(){
 		var direction = $(this).hasClass('horizontal') ? 'left' :'top';
@@ -162,7 +167,7 @@ function init() {
 		'padding-left':'100px',
 		float:'left',
 	});
-
+	logoPos = $('#logo').position();
 	processAnim();
 
 	s = skrollr.init({
