@@ -83,10 +83,10 @@ function removeData(){
 }
 
 $( document ).ready(function(){
-	$('navigation').hide();
+	$('#navigation').hide();
 	$('#flux_textes').imagesLoaded( function() {
 		$('.spinner').hide();
-		$('navigation').show();
+		$('#navigation').show();
 	  	init();
 	  	initClickAndScroll();
 	});
