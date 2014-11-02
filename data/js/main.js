@@ -9,6 +9,7 @@ function initClickAndScroll(){
 	    }else{
 	    	target =  $(the_id);
 	    }
+
 	    var pos = $.data(target[0], 'position');
 	    $('html, body').animate({  
 	        scrollTop:pos.start.pos + $(window).height() / 2 + more
@@ -51,8 +52,6 @@ function setPos(target, direction){
 			};
 			break;
 	}
-	
-	$.data(target, 'position', rv);
 
 	$(target).attr('data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
 	$(target).attr('data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
@@ -110,12 +109,14 @@ function init() {
 	$('.anim').each(function(){
 		var direction = $(this).hasClass('horizontal') ? 'left' :'top';
 		var fluxImages;
+		var rv;
+
 		$(this).children('.flux_images').each(function(){
 			fluxImages = this;
 		});
 
 		if(fluxImages){
-			var rv = setPos(fluxImages, direction);
+			rv = setPos(fluxImages, direction);
 			$(this).children('.fixe_title').each(function(){
 				$(this).css({
 					position: 'fixed',
@@ -131,10 +132,11 @@ function init() {
 				$(this).attr('data-end','opacity:0');
 			});
 		}else{
-			setPos(this, direction);
+			rv = setPos(this, direction);
 		}	
 
-		
+		$.data(this, 'position', rv);
+
 	});
 
 	var s = skrollr.init({
