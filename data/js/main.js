@@ -1,3 +1,4 @@
+var s;
 function initClickAndScroll(){
 	$('a[href^="#"]').click(function(){ 
 	    var the_id = $(this).attr("href");
@@ -53,8 +54,8 @@ function setPos(target, direction){
 			break;
 	}
 
-	$(target).attr('data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
-	$(target).attr('data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
+	addAttr(target, 'data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
+	addAttr(target, 'data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
 
 	inc =  rv.end.pos;
 
@@ -65,6 +66,22 @@ function setPos(target, direction){
 	return rv;
 }
 
+var datas = [];
+
+function addAttr(target, attr, value){
+	datas.push({
+		target:target,
+		attr: attr,
+	});
+	$(target).attr(attr,value);
+}
+
+function removeData(){
+	$.each(datas, function( index, value ) {
+	  	$(value.target).removeAttr(value.attr);
+	});
+}
+
 $( document ).ready(function(){
 	$('#flux_textes').imagesLoaded( function() {
 	  init();
@@ -72,18 +89,7 @@ $( document ).ready(function(){
 	});
 });
 
-function init() {
-
-	$("html").niceScroll({
-		// mousescrollstep: 5,
-	});
-
-	$('.flux_images img').css({
-		'display':'block',
-		'padding-left':'100px',
-		float:'left',
-	});
-
+function processAnim(){
 	$('.flux_images').each(function(){
 		var width = 0;
 		var height = 0;
@@ -124,12 +130,12 @@ function init() {
 					left : '15%',
 					top: '5%',
 				});
-				$(this).attr('data-0','opacity:0');
-				$(this).attr('data-' + (rv.start.pos-50),'opacity:0');
-				$(this).attr('data-' + rv.start.pos,'opacity:1');
-				$(this).attr('data-' + rv.end.pos, 'opacity:1');
-				$(this).attr('data-' + (rv.end.pos+50), 'opacity:0');
-				$(this).attr('data-end','opacity:0');
+				addAttr(this,'data-0','opacity:0');
+				addAttr(this,'data-' + (rv.start.pos-50),'opacity:0');
+				addAttr(this,'data-' + rv.start.pos,'opacity:1');
+				addAttr(this,'data-' + rv.end.pos, 'opacity:1');
+				addAttr(this,'data-' + (rv.end.pos+50), 'opacity:0');
+				addAttr(this,'data-end','opacity:0');
 			});
 		}else{
 			rv = setPos(this, direction);
@@ -138,8 +144,23 @@ function init() {
 		$.data(this, 'position', rv);
 
 	});
+}
 
-	var s = skrollr.init({
+function init() {
+
+	$("html").niceScroll({
+		// mousescrollstep: 5,
+	});
+
+	$('.flux_images img').css({
+		'display':'block',
+		'padding-left':'100px',
+		float:'left',
+	});
+
+	processAnim();
+
+	s = skrollr.init({
 		edgeStrategy: 'set',
 		easing: {
 			WTF: Math.random,
@@ -160,6 +181,10 @@ function init() {
 	}
 
 	function resize(){
+		inc = 0;
+		removeData();
+		processAnim();
+		s.refresh();
 		// TODO : test $(window).width() or $(window).innerWidth()
 		if (window.innerWidth > 499) {
 	        c.centerY("navigation");
@@ -168,6 +193,7 @@ function init() {
 	}
 
 	$( window ).resize(function() {
+		s.refresh();
 		resize();
 	});
 
