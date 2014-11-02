@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* style.scss */
 /* reset.scss */
 html {
@@ -63,7 +64,7 @@ body {
   margin-left: 75%; }
 
 #flux_textes .bloc {
-  width: 100%; }
+  width: 55%; }
 
 /* general.scss */
 p, li {
