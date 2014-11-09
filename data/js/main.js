@@ -1,4 +1,8 @@
 var s;
+var c;
+var startPos = 150;
+var inc = startPos;
+
 function initClickAndScroll(){
 	$('a[href^="#"]').click(function(){ 
 	    var the_id = $(this).attr("href");
@@ -19,7 +23,6 @@ function initClickAndScroll(){
 	});
 }
 
-var inc = 0;
 function setPos(target, direction){
 	var rv = null;
 	var fixedPos = 0;
@@ -28,7 +31,7 @@ function setPos(target, direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc + fixedPos ,
+					pos: inc + fixedPos  -300,
 					value: $(window).width(),
 				},
 				end:{
@@ -43,7 +46,7 @@ function setPos(target, direction){
 		case 'top':
 			rv = {
 				start:{
-					pos: inc - fixedPos,
+					pos: inc - fixedPos - 300,
 					value: $(window).height(),
 				},
 				end:{
@@ -118,7 +121,8 @@ function processAnim(){
 	$('.commander').css({
 		height:$(window).height(),
 	});
-
+	c.centerY("logo");
+	logoPos = $('#logo').position();
 	addAttr($('#logo')[0], 'data-0','top:'+logoPos.top+'px');
 	addAttr($('#logo')[0], 'data-500','top:'+(-logoPos.top)+'px');
 
@@ -167,7 +171,8 @@ function init() {
 		'padding-left':'100px',
 		float:'left',
 	});
-	logoPos = $('#logo').position();
+
+	c = new Center();
 	processAnim();
 
 	s = skrollr.init({
@@ -182,8 +187,6 @@ function init() {
 
 	// init and resize
 
-	var c = new Center();
-
 	function initAndResize(){
 		$('.flux_images').each(function(){
 			$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
@@ -191,7 +194,7 @@ function init() {
 	}
 
 	function resize(){
-		inc = 0;
+		inc = startPos;
 		removeData();
 		processAnim();
 		s.refresh();

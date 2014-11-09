@@ -430,13 +430,11 @@ ul {
 #logo{
   position: fixed;
   left: 50%;
-  top: 50%;
   width: 500px;
   height: 200px;
   margin-left: -250px;
-  margin-top: -75px;
   text-align: center;
-  padding-top: 65px;
+  padding-top: 25px;
   
 }
 
