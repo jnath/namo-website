@@ -204,7 +204,7 @@ ul {
 
 #menu {
   position: relative;
-  width: 400px;
+  width: 500px;
   margin: auto; }
 
 .col:first-of-type, .col:nth-of-type(2) {
@@ -212,6 +212,7 @@ ul {
 
 .col:first-of-type {
   right: 0;
+  top:25px;
   text-align: right; }
 
 .col:last-of-type {
@@ -429,17 +430,11 @@ ul {
 
 #logo{
   position: fixed;
-  left: 50%;
-  width: 500px;
-  height: 200px;
-  margin-left: -250px;
-  text-align: center;
-  padding-top: 25px;
-  
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9) url('../../data/img/logo.png') no-repeat 50% 50%;
 }
 
 #logo h1{
-  font: 60px "namo-font-bold", sans-serif;
-  background-color: black;
-  color: white;
+  display: none;
 }
