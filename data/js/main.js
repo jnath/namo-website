@@ -1,4 +1,8 @@
 var s;
+var c;
+var startPos;
+var inc;
+
 function initClickAndScroll(){
 	$('a[href^="#"]').click(function(){ 
 	    var the_id = $(this).attr("href");
@@ -6,7 +10,7 @@ function initClickAndScroll(){
 	    var more=0;
 	    if(!$(the_id).hasClass('anim')){
 	    	target = $(the_id).parent('.anim');
-	    	more = $(the_id).position().top - $(window).height() / 2;
+	    	more = $(the_id).position().top;
 	    }else{
 	    	target =  $(the_id);
 	    }
@@ -19,7 +23,6 @@ function initClickAndScroll(){
 	});
 }
 
-var inc = 0;
 function setPos(target, direction){
 	var rv = null;
 	var fixedPos = 0;
@@ -28,7 +31,7 @@ function setPos(target, direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc + fixedPos ,
+					pos: inc + fixedPos - $(window).width()/2,
 					value: $(window).width(),
 				},
 				end:{
@@ -43,7 +46,7 @@ function setPos(target, direction){
 		case 'top':
 			rv = {
 				start:{
-					pos: inc - fixedPos,
+					pos: inc - fixedPos - $(window).height()/2 - 200,
 					value: $(window).height(),
 				},
 				end:{
@@ -118,9 +121,11 @@ function processAnim(){
 	$('.commander').css({
 		height:$(window).height(),
 	});
-
+	// c.centerY("logo");
+	logoPos = $('#logo').position();
+	startPos = $($('#logo')[0]).height();
 	addAttr($('#logo')[0], 'data-0','top:'+logoPos.top+'px');
-	addAttr($('#logo')[0], 'data-500','top:'+(-logoPos.top)+'px');
+	addAttr($('#logo')[0], 'data-500','top:'+(-startPos)+'px');
 
 	$('.anim').each(function(){
 		var direction = $(this).hasClass('horizontal') ? 'left' :'top';
@@ -129,6 +134,7 @@ function processAnim(){
 
 		$(this).children('.flux_images').each(function(){
 			fluxImages = this;
+			$(this).css('z-index', 0);
 		});
 
 		if(fluxImages){
@@ -137,8 +143,8 @@ function processAnim(){
 				$(this).css({
 					position: 'fixed',
 					'z-index': 100000,
-					left : '15%',
-					top: '5%',
+					right : '10%',
+					bottom: '10px',
 				});
 				addAttr(this,'data-0','opacity:0');
 				addAttr(this,'data-' + (rv.start.pos-50),'opacity:0');
@@ -149,6 +155,9 @@ function processAnim(){
 			});
 		}else{
 			rv = setPos(this, direction);
+			$(this).css({
+				'z-index': 100000,
+			});
 		}	
 
 		$.data(this, 'position', rv);
@@ -167,7 +176,10 @@ function init() {
 		'padding-left':'100px',
 		float:'left',
 	});
-	logoPos = $('#logo').position();
+
+	c = new Center();
+	startPos = $($('#logo')[0]).height();
+	inc = startPos;
 	processAnim();
 
 	s = skrollr.init({
@@ -182,8 +194,6 @@ function init() {
 
 	// init and resize
 
-	var c = new Center();
-
 	function initAndResize(){
 		$('.flux_images').each(function(){
 			$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
@@ -191,7 +201,7 @@ function init() {
 	}
 
 	function resize(){
-		inc = 0;
+		inc = startPos;
 		removeData();
 		processAnim();
 		s.refresh();
