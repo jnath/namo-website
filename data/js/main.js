@@ -56,10 +56,17 @@ function setPos(target, direction){
 			};
 			break;
 	}
-
-	addAttr(target, 'data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
-	addAttr(target, 'data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
-
+	var attrStart = 'data-' + rv.start.pos;
+	var attrEnd = 'data-' + rv.end.pos;
+	addAttr(target, attrStart, direction + ':' + rv.start.value + 'px;');
+	addAttr(target, attrEnd, direction + ':' + rv.end.value + 'px;');
+	// if($(target).attr('id')){
+	// 	console.log($(target).attr('id'));
+	// 	document.querySelector('#' + $(target).attr('id')).addEventListener('skrollr.' + attrStart + '.up', function() {
+	// 	    //#foo just passed the data-top-bottom keyframe while scrolling up
+	// 	    console.log('-------------');
+	// 	}, true);
+	// }
 	inc =  rv.end.pos;
 
 	$(target).css({
@@ -110,22 +117,21 @@ function processAnim(){
 			}
 		});
 		$(this).css({
-			left:$( window ).width(),
-			width:width + 10,
-			height:height,
-			top:'50%',
-		
+			left: $( window ).width(),
+			width: width + 10,
+			height: height,
+			top: '50%',
 		});
 	});
 
 	$('.commander').css({
-		height:$(window).height(),
+		height: $(window).height(),
 	});
 	// c.centerY("logo");
 	logoPos = $('#logo').position();
 	startPos = $($('#logo')[0]).height();
-	addAttr($('#logo')[0], 'data-0','top:'+logoPos.top+'px');
-	addAttr($('#logo')[0], 'data-500','top:'+(-startPos)+'px');
+	addAttr($('#logo')[0], 'data-0','top:' + logoPos.top + 'px' );
+	addAttr($('#logo')[0], 'data-500','top:' + ( - startPos ) + 'px' );
 
 	$('.anim').each(function(){
 		var direction = $(this).hasClass('horizontal') ? 'left' :'top';
@@ -139,22 +145,10 @@ function processAnim(){
 
 		if(fluxImages){
 			rv = setPos(fluxImages, direction);
-			$(this).children('.fixe_title').each(function(){
-				$(this).css({
-					position: 'fixed',
-					'z-index': 100000,
-					right : '10%',
-					bottom: '10px',
-				});
-				addAttr(this,'data-0','opacity:0');
-				addAttr(this,'data-' + (rv.start.pos-50),'opacity:0');
-				addAttr(this,'data-' + rv.start.pos,'opacity:1');
-				addAttr(this,'data-' + rv.end.pos, 'opacity:1');
-				addAttr(this,'data-' + (rv.end.pos+50), 'opacity:0');
-				addAttr(this,'data-end','opacity:0');
-			});
+			$(fluxImages).attr('data-emit-events', '');
 		}else{
 			rv = setPos(this, direction);
+			$(this).attr('data-emit-events', '');
 			$(this).css({
 				'z-index': 100000,
 			});
@@ -182,6 +176,8 @@ function init() {
 	inc = startPos;
 	processAnim();
 
+	var scrollDisplay = [];
+
 	s = skrollr.init({
 		edgeStrategy: 'set',
 		easing: {
@@ -189,11 +185,27 @@ function init() {
 			inverted: function(p) {
 				return 1-p;
 			}
-		}
+		},
+		keyframe: function(element, name, direction) {
+			var that = element;
+			if($(element).hasClass('flux_images')){
+				that = $(element).parent('.anim');
+			}
+			if($(that).attr('id')){
+				var index = scrollDisplay.indexOf($(that).attr('id'));
+				if(index !== -1){
+					scrollDisplay.splice(index, 1);
+					$('a[href="#' + $(that).attr('id') + '"]').css('color', '#000000');
+					return;
+				}
+
+				scrollDisplay.push($(that).attr('id'));
+				$('a[href="#' + $(that).attr('id') + '"]').css('color', '#cccccc');
+			}
+	    }
 	});
 
 	// init and resize
-
 	function initAndResize(){
 		$('.flux_images').each(function(){
 			$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
