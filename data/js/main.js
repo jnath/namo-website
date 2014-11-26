@@ -176,7 +176,7 @@ function init() {
 	inc = startPos;
 	processAnim();
 
-	var scrollDisplay = [];
+	var scrollDisplay;
 
 	s = skrollr.init({
 		edgeStrategy: 'set',
@@ -191,16 +191,13 @@ function init() {
 			if($(element).hasClass('flux_images')){
 				that = $(element).parent('.anim');
 			}
-			if($(that).attr('id')){
-				var index = scrollDisplay.indexOf($(that).attr('id'));
-				if(index !== -1){
-					scrollDisplay.splice(index, 1);
-					$('a[href="#' + $(that).attr('id') + '"]').css('color', '#000000');
-					return;
+			var id = $(that).attr('id');
+			if(id){
+				if(id !== scrollDisplay){
+					$('a[href="#' + scrollDisplay + '"]').css('color', '#000000');
+					$('a[href="#' + id + '"]').css('color', '#cccccc');
+					scrollDisplay = id;
 				}
-
-				scrollDisplay.push($(that).attr('id'));
-				$('a[href="#' + $(that).attr('id') + '"]').css('color', '#cccccc');
 			}
 	    }
 	});
