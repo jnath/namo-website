@@ -22,7 +22,7 @@ function initClickAndScroll(){
 	    return false;  
 	});
 }
-
+var menuPos = [];
 function setPos(target, direction){
 	var rv = null;
 	var fixedPos = 0;
@@ -60,13 +60,15 @@ function setPos(target, direction){
 	var attrEnd = 'data-' + rv.end.pos;
 	addAttr(target, attrStart, direction + ':' + rv.start.value + 'px;');
 	addAttr(target, attrEnd, direction + ':' + rv.end.value + 'px;');
-	// if($(target).attr('id')){
-	// 	console.log($(target).attr('id'));
-	// 	document.querySelector('#' + $(target).attr('id')).addEventListener('skrollr.' + attrStart + '.up', function() {
-	// 	    //#foo just passed the data-top-bottom keyframe while scrolling up
-	// 	    console.log('-------------');
-	// 	}, true);
-	// }
+
+	menuPos.push({
+		position: {
+			start: rv.start.pos,
+			end: rv.end.pos,
+		},
+		id: $(target).data('menuId'),
+	});
+
 	inc =  rv.end.pos;
 
 	$(target).css({
@@ -171,13 +173,41 @@ function init() {
 		float:'left',
 	});
 
+	var lastId;
+
+	$('.anim').each(function(){
+		var id = $(this).attr('id');
+		if(id){
+			lastId = id; 
+		}
+
+		$(this).data('menuId', lastId);
+	});
+
 	c = new Center();
 	startPos = $($('#logo')[0]).height();
 	inc = startPos;
 	processAnim();
 
-	var scrollDisplay;
+	
+	
+	
 
+	// $('.anim').each(function(){
+	// 	var id = $(this).attr('id');
+	// 	if(id){
+	// 		lastId = id; 
+	// 	}
+
+	// 	menuPos.push({
+	// 		that: this,
+	// 		id:lastId,
+	// 	});
+	// });
+
+	var lastFindPos;
+	var scrollDisplay;
+	var divsDisplay = [];
 	s = skrollr.init({
 		edgeStrategy: 'set',
 		easing: {
@@ -186,19 +216,48 @@ function init() {
 				return 1-p;
 			}
 		},
-		keyframe: function(element, name, direction) {
-			var that = element;
-			if($(element).hasClass('flux_images')){
-				that = $(element).parent('.anim');
-			}
-			var id = $(that).attr('id');
-			if(id){
-				if(id !== scrollDisplay){
-					$('a[href="#' + scrollDisplay + '"]').css('color', '#000000');
-					$('a[href="#' + id + '"]').css('color', '#cccccc');
-					scrollDisplay = id;
-				}
-			}
+		// keyframe: function(element, name, direction) {
+		// 	var that = element;
+		// 	if($(element).hasClass('flux_images')){
+		// 		that = $(element).parent('.anim');
+		// 	}
+		// 	var id = $(that).data('menuId');
+		// 	var i = divsDisplay.indexOf(id);
+
+		// 	if(id){
+		// 		if( i === -1){
+		// 			$('a[href="#' + id + '"]').css('color', '#cccccc');
+		// 			divsDisplay.push(id);
+		// 			scrollDisplay = id;
+		// 		}
+
+		// 		if( i !== -1){
+		// 			$('a[href="#' + id + '"]').css('color', '#000000');
+		// 			divsDisplay.splice(i,1);
+		// 		}
+
+		// 		if(id === scrollDisplay){
+		// 			$('a[href="#' + id + '"]').css('color', '#cccccc');
+		// 			if( divsDisplay.indexOf(id) === -1)divsDisplay.push(id);
+		// 		}
+		// 	}
+	 //    },
+	    beforerender:function(pos){
+	    	var findPos;
+	    	for(var a in menuPos){
+	    		var animPos = menuPos[a];
+	    		if(pos.direction === 'down' && pos.curTop < animPos.position.start){
+	    			findPos = animPos.id;
+	    			break;
+	    		}else if(pos.direction === 'up' && pos.curTop > animPos.position.end){
+	    			findPos = animPos.id;
+	    		}
+	    	}
+	    	if(findPos && lastFindPos !== findPos){
+	    		$('a[href="#' + lastFindPos + '"]').css('color', '#000000');
+	    		$('a[href="#' + findPos + '"]').css('color', '#cccccc');
+	    		lastFindPos = findPos;
+	    	}
 	    }
 	});
 
