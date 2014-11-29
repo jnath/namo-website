@@ -2,6 +2,31 @@ var s;
 var c;
 var startPos;
 var inc;
+var menuPos;
+
+function initPosMenu(){
+	menuPos = [];
+	$('a[href^="#"]').each(function(){ 
+	    var the_id = $(this).attr("href");
+	    var target = $(the_id);
+	    var more=0;
+	    var id = $(target).data('menuId');
+	    if(!$(the_id).hasClass('anim')){
+	    	target = $(the_id).parent('.anim');
+	    	more = $(the_id).position().top;
+	    	id = $(the_id).attr('id');
+	    }
+
+	    var pos = $.data(target[0], 'position');
+	   	menuPos.push({ 
+			position: pos.start.pos + $(window).height() / 2 + more,
+			id: id,
+		});
+	});
+	menuPos.sort(function(a, b){
+		return a.position-b.position;
+	});
+}
 
 function initClickAndScroll(){
 	$('a[href^="#"]').click(function(){ 
@@ -17,12 +42,12 @@ function initClickAndScroll(){
 
 	    var pos = $.data(target[0], 'position');
 	    $('html, body').animate({  
-	        scrollTop:pos.start.pos + $(window).height() / 2 + more
+	        scrollTop:pos.start.pos + $(window).height() / 2 + more + 2
 	    }, 'slow');
 	    return false;  
 	});
 }
-var menuPos = [];
+
 function setPos(target, direction){
 	var rv = null;
 	var fixedPos = 0;
@@ -61,13 +86,6 @@ function setPos(target, direction){
 	addAttr(target, attrStart, direction + ':' + rv.start.value + 'px;');
 	addAttr(target, attrEnd, direction + ':' + rv.end.value + 'px;');
 
-	menuPos.push({
-		position: {
-			start: rv.start.pos,
-			end: rv.end.pos,
-		},
-		id: $(target).data('menuId'),
-	});
 
 	inc =  rv.end.pos;
 
@@ -144,20 +162,54 @@ function processAnim(){
 			fluxImages = this;
 			$(this).css('z-index', 0);
 		});
-
+		var target;
 		if(fluxImages){
+			target = fluxImages;
 			rv = setPos(fluxImages, direction);
 			$(fluxImages).attr('data-emit-events', '');
 		}else{
+			target = this;
 			rv = setPos(this, direction);
 			$(this).attr('data-emit-events', '');
 			$(this).css({
 				'z-index': 100000,
 			});
 		}	
-
+		
 		$.data(this, 'position', rv);
 
+	});
+}
+
+function scaleSize(maxW, maxH, currW, currH){
+    var ratio = currH / currW;
+    if(currW >= maxW && ratio <= 1){
+        currW = maxW;
+        currH = currW * ratio;
+    } else if(currH >= maxH){
+        currH = maxH;
+        currW = currH / ratio;
+    }
+    return {
+    	width:currW, 
+    	height: currH,
+    };
+}
+
+function imgInit(){
+	$('.flux_images img').each(function(){
+		$(this).data('originalSize', {
+			width: $(this).width(),
+			height: $(this).height(),
+		});
+	});
+	imgResize();
+}
+
+function imgResize(){
+	$('.flux_images img').each(function(){
+		var originalSize = $(this).data('originalSize');
+		$(this).css(scaleSize($(window).width(), $(window).height(), originalSize.width, originalSize.height));
 	});
 }
 
@@ -169,9 +221,11 @@ function init() {
 
 	$('.flux_images img').css({
 		'display':'block',
-		'padding-left':'100px',
+		'padding-left':'0px',
 		float:'left',
 	});
+
+	imgInit();
 
 	var lastId;
 
@@ -189,22 +243,6 @@ function init() {
 	inc = startPos;
 	processAnim();
 
-	
-	
-	
-
-	// $('.anim').each(function(){
-	// 	var id = $(this).attr('id');
-	// 	if(id){
-	// 		lastId = id; 
-	// 	}
-
-	// 	menuPos.push({
-	// 		that: this,
-	// 		id:lastId,
-	// 	});
-	// });
-
 	var lastFindPos;
 	var scrollDisplay;
 	var divsDisplay = [];
@@ -216,41 +254,20 @@ function init() {
 				return 1-p;
 			}
 		},
-		// keyframe: function(element, name, direction) {
-		// 	var that = element;
-		// 	if($(element).hasClass('flux_images')){
-		// 		that = $(element).parent('.anim');
-		// 	}
-		// 	var id = $(that).data('menuId');
-		// 	var i = divsDisplay.indexOf(id);
-
-		// 	if(id){
-		// 		if( i === -1){
-		// 			$('a[href="#' + id + '"]').css('color', '#cccccc');
-		// 			divsDisplay.push(id);
-		// 			scrollDisplay = id;
-		// 		}
-
-		// 		if( i !== -1){
-		// 			$('a[href="#' + id + '"]').css('color', '#000000');
-		// 			divsDisplay.splice(i,1);
-		// 		}
-
-		// 		if(id === scrollDisplay){
-		// 			$('a[href="#' + id + '"]').css('color', '#cccccc');
-		// 			if( divsDisplay.indexOf(id) === -1)divsDisplay.push(id);
-		// 		}
-		// 	}
-	 //    },
 	    beforerender:function(pos){
 	    	var findPos;
-	    	for(var a in menuPos){
-	    		var animPos = menuPos[a];
-	    		if(pos.direction === 'down' && pos.curTop < animPos.position.start){
-	    			findPos = animPos.id;
-	    			break;
-	    		}else if(pos.direction === 'up' && pos.curTop > animPos.position.end){
-	    			findPos = animPos.id;
+	    	if(!menuPos)return;
+	    	for(var i=0; i<menuPos.length; i++){
+	    		if(menuPos[i+1]){
+	    			if(pos.curTop > menuPos[i].position && pos.curTop < menuPos[i+1].position){
+		    			findPos = menuPos[i].id;
+		    			break;
+		    		}
+	    		}else{
+	    			if(pos.curTop > menuPos[i].position){
+		    			findPos = menuPos[i].id;
+		    			break;
+		    		}
 	    		}
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
@@ -263,12 +280,14 @@ function init() {
 
 	// init and resize
 	function initAndResize(){
+		initPosMenu();
 		$('.flux_images').each(function(){
 			$(this).css('margin-top','-' + $(this).height() / 2 + 'px');
 		});
 	}
 
 	function resize(){
+		imgResize();
 		inc = startPos;
 		removeData();
 		processAnim();
