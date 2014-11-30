@@ -113,14 +113,15 @@ function removeData(){
 }
 
 $( document ).ready(function(){
-	$('#navigation').hide();
-	$('#conteneur').hide();
-	$('#flux_textes').imagesLoaded( function() {
-		$('.spinner').hide();
-		$('#navigation').show();
-		$('#conteneur').show();
-	  	init();
-	  	initClickAndScroll();
+	jQuery(".flux_images img").lazy({
+		onFinishedAll: function() {
+	        $('.spinner').hide();
+	        $('#logo h1').show();
+			$('#navigation').show();
+			$('#conteneur').show();
+		  	init();
+		  	initClickAndScroll();
+	    },
 	});
 });
 
@@ -131,7 +132,7 @@ function processAnim(){
 		var width = 0;
 		var height = 0;
 		$(this).children().each(function(){
-			width += $(this).width() + parseInt($(this).css('padding-left'));
+			width += $(this).width() + parseInt($(this).css('margin-left'));
 			if(height < $(this).height()){
 				height = $(this).height();
 			}
@@ -183,15 +184,10 @@ function processAnim(){
 
 function scaleSize(maxW, maxH, currW, currH){
     var ratio = currH / currW;
-    if(currW >= maxW && ratio <= 1){
-        currW = maxW;
-        currH = currW * ratio;
-    } else if(currH >= maxH){
-        currH = maxH;
-        currW = currH / ratio;
-    }
+    currH = maxH;
+    currW = currH / ratio;
     return {
-    	width:currW, 
+    	width: currW, 
     	height: currH,
     };
 }
@@ -209,7 +205,8 @@ function imgInit(){
 function imgResize(){
 	$('.flux_images img').each(function(){
 		var originalSize = $(this).data('originalSize');
-		$(this).css(scaleSize($(window).width(), $(window).height(), originalSize.width, originalSize.height));
+		console.log($(this).attr('src'));
+		$(this).css(scaleSize($(window).width(), $(window).height() - 50 * 2, originalSize.width, originalSize.height));
 	});
 }
 
@@ -221,7 +218,7 @@ function init() {
 
 	$('.flux_images img').css({
 		'display':'block',
-		'padding-left':'0px',
+		'margin-left':'25px',
 		float:'left',
 	});
 

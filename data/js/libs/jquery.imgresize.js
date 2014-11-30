@@ -13,6 +13,7 @@ Liip.resizer = (function ($) {
         img.onload = function() {
             deferred.resolve(img);
         };
+        console.log(src);
         img.src = src;
         return deferred.promise();
     };
@@ -22,7 +23,7 @@ Liip.resizer = (function ($) {
      */
     var startResize = function (inputId, outputId, size) {
         return $.when(
-            createImage($('#'+inputId).attr('src'))
+            createImage($('#'+inputId).attr('data-src'))
         ).then(resize(outputId, size));
     };
 
@@ -32,12 +33,14 @@ Liip.resizer = (function ($) {
      * Afterwards put the base64 data into the target image
      */
     var resize = function(outputId, size){
+        console.log('--------->');
         return function (image) {
             mainCanvas = document.createElement("canvas");
             mainCanvas.width = size.width;
             mainCanvas.height = size.height;
             var ctx = mainCanvas.getContext("2d");
             ctx.drawImage(image, 0, 0, mainCanvas.width, mainCanvas.height);
+            console.log('--->', mainCanvas.toDataURL("image/jpeg"));
             $('#' + outputId).attr('src', mainCanvas.toDataURL("image/jpeg"));
         };
     };
