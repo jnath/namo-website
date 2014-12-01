@@ -268,8 +268,8 @@ function init() {
 	    		}
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
-	    		$('a[href="#' + lastFindPos + '"]').css('color', '#000000');
-	    		$('a[href="#' + findPos + '"]').css('color', '#cccccc');
+	    		$('a[href="#' + lastFindPos + '"]').css('text-decoration','none');
+	    		$('a[href="#' + findPos + '"]').css('text-decoration','underline');
 	    		lastFindPos = findPos;
 	    	}
 	    }
@@ -297,7 +297,6 @@ function init() {
 	}
 
 	$( window ).resize(function() {
-		s.refresh();
 		resize();
 	});
 
