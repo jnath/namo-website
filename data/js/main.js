@@ -198,11 +198,20 @@ function scaleSize(maxW, maxH, currW, currH){
 }
 
 function imgInit(){
+	
 	$('.flux_images img').each(function(){
-		$(this).data('originalSize', {
+		var size = {
 			width: $(this).width(),
 			height: $(this).height(),
-		});
+		};
+		$(this).data('originalSize', size);
+
+		var mainCanvas = document.createElement("canvas");
+        mainCanvas.width = size.width;
+        mainCanvas.height = size.height;
+        var ctx = mainCanvas.getContext("2d");
+        ctx.drawImage(this, 0, 0, mainCanvas.width, mainCanvas.height);
+        $(this).attr('src', mainCanvas.toDataURL("image/jpeg"));
 	});
 	imgResize();
 }
