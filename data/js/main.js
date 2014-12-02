@@ -56,14 +56,19 @@ function setPos(target, direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc + fixedPos - $(window).width()/2,
+					pos: inc + fixedPos - $(window).width()/2 - 300,
 					value: $(window).width(),
 				},
 				end:{
-					pos: (inc + $(target).width()),
+					pos: (inc + $(target).width()) + 300,
 					value: -$(target).width(),
 				}
 			};
+			addAttr(target, 'data-' + ( rv.start.pos-600 ), direction + ':' + rv.start.value + 'px;');
+			addAttr(target, 'data-' + ( rv.end.pos+600 ), direction + ':' + rv.end.value + 'px;');
+
+			addAttr(target, 'data-' + ( rv.start.pos+600 ), direction + ':' + (rv.start.value - 300) + 'px;');
+			addAttr(target, 'data-' + (rv.end.pos-600), direction + ':' + (rv.end.value + 300) + 'px;');
 		break;
 
 		default:
@@ -79,12 +84,12 @@ function setPos(target, direction){
 					value: -$(target).height()-10,
 				}
 			};
+			addAttr(target, 'data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
+			addAttr(target, 'data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
 			break;
 	}
-	var attrStart = 'data-' + rv.start.pos;
-	var attrEnd = 'data-' + rv.end.pos;
-	addAttr(target, attrStart, direction + ':' + rv.start.value + 'px;');
-	addAttr(target, attrEnd, direction + ':' + rv.end.value + 'px;');
+
+	
 
 
 	inc =  rv.end.pos;
