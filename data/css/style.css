@@ -157,7 +157,7 @@ a.inactive { color: $couleur-liens-hover}
 a.inactive:hover { color: $couleur-caracteres}
 */
 h1, h2, h3, h4, h5, h6, #navigation {
-  font: 18px/24px "namo-font-bold", sans-serif; }
+  font: 16px/20px "namo-font-bold", sans-serif; }
 
 h3 {
   font-style: italic; }
@@ -227,16 +227,16 @@ ul {
   left: 1.25em; }
 
 .col:nth-of-type(2) {
-  left: 0; }
+  left: 20px; }
 
 #menu .contenu hr {
-  width: 2em;
+  width: 48px;
   margin: 0 auto;
   border: none;
   border-top: 1px solid black; }
 
 #menu .contenu p {
-  font: 20px/24px "namo-font-bold", sans-serif;
+  font: 22px/20px "namo-font-bold", sans-serif;
   position: relative;
   left: 0.22em; }
 
@@ -447,4 +447,8 @@ ul {
   width: 100%;
   height: 100%;
   background:  url('../../data/img/logo.png') no-repeat 50% 50%;
+}
+
+#navigation li.contact{
+  padding-top:10px;
 }

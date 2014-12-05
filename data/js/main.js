@@ -67,8 +67,8 @@ function setPos(target, direction){
 			addAttr(target, 'data-' + ( rv.start.pos-600 ), direction + ':' + rv.start.value + 'px;');
 			addAttr(target, 'data-' + ( rv.end.pos+600 ), direction + ':' + rv.end.value + 'px;');
 
-			addAttr(target, 'data-' + ( rv.start.pos+600 ), direction + ':' + (rv.start.value - 300) + 'px;');
-			addAttr(target, 'data-' + (rv.end.pos-600), direction + ':' + (rv.end.value + 300) + 'px;');
+			addAttr(target, 'data-' + ( rv.start.pos+600 ), direction + ':' + (rv.start.value - 900) + 'px;');
+			addAttr(target, 'data-' + (rv.end.pos-600), direction + ':' + (rv.end.value + 900) + 'px;');
 		break;
 
 		default:
@@ -282,8 +282,11 @@ function init() {
 	    		}
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
-	    		$('a[href="#' + lastFindPos + '"]').css('text-decoration','none');
-	    		$('a[href="#' + findPos + '"]').css('text-decoration','underline');
+	    		//$('a[href="#' + lastFindPos + '"]').css('text-decoration','none');
+	    		//$('a[href="#' + findPos + '"]').css('text-decoration','line-through');
+
+	    		$('a[href="#' + lastFindPos + '"]').css('font-style','normal');
+	    		$('a[href="#' + findPos + '"]').css('font-style','italic');
 	    		lastFindPos = findPos;
 	    	}
 	    }
