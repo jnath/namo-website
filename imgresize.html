@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <title>Client Side Image resize</title>
+    <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <input type="button" value="Resize Image" id="resize" />
+    <input type="range" id="size" min="0" max="100">
+    <br/>
+    <div>
+        <h1>Resized Image</h1>
+        <img id="outputImage" />
+    </div>
+    <div>
+        <h1>Original Image</h1>
+        <img id="inputImage" src="data/img/namo-1/original-01.jpg" />
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="data/js/libs/jquery.imgresize.js"></script>
+    <script type="text/javascript">
+    jQuery(function($) {
+        $("#resize").click(function(){
+            var size = {
+                width: $('#inputImage').width() * $('#size').get(0).value / 100 + 10,
+                height: $('#inputImage').height() * $('#size').get(0).value / 100 + 10,
+            }
+            Liip.resizer.resize('inputImage', 'outputImage', size).then(function(){
+                console.log('resize finish');
+            })
+        });
+    });
+    </script>
+</body>
+</html>

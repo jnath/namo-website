@@ -55,13 +55,13 @@ body {
   width: 100%; }
 
 .prefix-1 {
-  margin-left: 25%; }
+  margin-left: 0%; }
 
 .prefix-2 {
-  margin-left: 50%; }
+  margin-left: 25%; }
 
 .prefix-3 {
-  margin-left: 75%; }
+  margin-left: 50%; }
 
 #flux_textes .bloc {
   width: 55%; }
@@ -74,25 +74,20 @@ p, li {
 h2 {
   margin-top: 1.5em; }
 
-#points-de-vente div:not(:first-of-type) {
-  border-top: 1px solid black; }
-
 #points-de-vente h2 {
   margin-bottom: 1.5em; }
 
 #points-de-vente li:not(:first-of-type) {
   margin-top: 1em; }
 
-#commander div:first-of-type {
-  border-top: 1px solid black; }
-
 .centrer {
   text-align: center; }
 
 #conteneur {
+  display: none;
   width: 100%;
   height: 100%;
-  padding: 1% 4% 4% 4%; }
+  padding: 1% 4% 4% 150px; }
 
 #flux-textes {
   width: 100%;
@@ -115,7 +110,7 @@ h2 {
 html {
   font: 28px/36px "namo-font-bold", sans-serif;
   color: black;
-  background-color: #f5f5f5; }
+  background-color: #FFFFFF; }
 
 a {
   color: black;
@@ -132,25 +127,23 @@ a:link {
   line-height: 0;
   font-size: 0.5em; }
 
-.bloc a:hover {
+/*.bloc a:hover {
   color: white;
   background-color: black;
   margin: -0.1em -0.17em;
-  padding: 0.1em 0.17em; }
+  padding: 0.1em 0.17em; }*/
 
 /*
 .bloc a:link:hover:after {
 	content: "web";
 }
 */
-a.active:before {
-  content: "— "; }
 
-a.inactive {
-  color: black; }
+/*a.inactive {
+  color: black; }*/
 
-a.inactive:hover {
-  color: #666; }
+/*a.inactive:hover {
+  color: #666; }*/
 
 /*
 a.active { color: $couleur-caracteres}
@@ -158,18 +151,18 @@ a.inactive { color: $couleur-liens-hover}
 a.inactive:hover { color: $couleur-caracteres}
 */
 h1, h2, h3, h4, h5, h6, #navigation {
-  font: 18px/24px "namo-font-bold", sans-serif; }
+  font: 16px/20px "namo-font-bold", sans-serif; }
 
 h3 {
   font-style: italic; }
 
-#points-de-vente ul li:hover {
+/*#points-de-vente ul li:hover {
   background-color: black;
   color: white;
   margin: -0.1em -0.17em;
-  padding: 0.1em 0.17em; }
+  padding: 0.1em 0.17em; }*/
 
-#points-de-vente ul li:hover:not(:first-of-type) {
+/*#points-de-vente ul li:hover:not(:first-of-type) {
   margin: 0.9em -0.17em -0.1em -0.17em; }
 
 #points-de-vente ul li:hover a {
@@ -177,7 +170,7 @@ h3 {
 
 #points-de-vente ul li:hover a:hover {
   color: #666;
-  background-color: auto; }
+  background-color: auto; }*/
 
 ul {
   list-style: none;
@@ -185,6 +178,7 @@ ul {
 
 /* navigation.scss */
 #navigation {
+  display: none;
   position: fixed;
   top: 0;
   left: -180px;
@@ -223,25 +217,30 @@ ul {
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
   position: relative;
-  top: -0.7em;
+  top: 0.3em;
   left: 1.25em; }
 
 .col:nth-of-type(2) {
-  left: 0; }
+  left: 20px; }
 
 #menu .contenu hr {
-  width: 2em;
-  margin: 0 auto;
+  width: 48px;
+  margin: 0 232px;
   border: none;
   border-top: 1px solid black; }
 
-#menu .contenu p:first-of-type {
+#menu .contenu p {
+  font: 22px/20px "namo-font-bold", sans-serif;
   position: relative;
   left: 0.22em; }
 
+#menu .contenu p:first-of-type {
+  bottom:12px;
+  }
+
 #menu .contenu p:nth-of-type(2) {
-  position: relative;
-  top: -0.14em; }
+  top:12px;
+  }
 
 /* mediaqueries.scss */
 @media screen and (min-width: 1200px) {
@@ -321,12 +320,13 @@ ul {
   position: fixed;
   left: 50%;
   top: 50%;
+  z-index: 100000;
 }
 
 .container1 > div, .container2 > div, .container3 > div {
   width: 6px;
   height: 6px;
-  background-color: #333;
+  background-color: #FFFFFF;
 
   border-radius: 100%;
   position: absolute;
@@ -432,9 +432,25 @@ ul {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9) url('../../data/img/logo.png') no-repeat 50% 50%;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 #logo h1{
+  position: relative;
+  margin: auto;
   display: none;
+  text-indent: -100000px;
+  top: 50%;
+  width: 120px;
+  height: 30px;
+  background: url('../../data/img/logo.png') no-repeat 50% 50%;
+  cursor: pointer;
+}
+
+#navigation li.contact{
+  padding-top:10px;
+}
+
+#commander, #points-de-vente{
+  border-bottom: 1px solid black;
 }
