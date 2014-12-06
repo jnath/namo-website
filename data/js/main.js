@@ -6,7 +6,7 @@ var menuPos;
 
 function initPosMenu(){
 	menuPos = [];
-	$('a[href^="#"]').each(function(){ 
+	$('#navigation a[href^="#"]').each(function(){ 
 	    var the_id = $(this).attr("href");
 	    var target = $(the_id);
 	    var more=0;
@@ -33,7 +33,7 @@ function clickMenu(the_id){
     var more=0;
     if(!$(the_id).hasClass('anim')){
     	target = $(the_id).parent('.anim');
-    	more = $(the_id).position().top * 1.2;
+    	more = $(the_id).position().top -  $(window).height() / 2;
     }
 
     var pos = $.data(target[0], 'position');
@@ -52,6 +52,7 @@ function initClickAndScroll(){
 
 var imgsSpace = 0;
 var lastTextSpace = 0;
+var lastImg = null;
 function setPos(target, direction){
 	var rv = null;
 	
@@ -59,7 +60,7 @@ function setPos(target, direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc - $(window).width() - lastTextSpace,
+					pos: inc - $(window).width() - lastTextSpace + (lastImg ? $(lastImg).find('img:last').width() : $(target).find('img:first').width()+100),
 					value: $(window).width(),
 				},
 				end:{
@@ -70,7 +71,8 @@ function setPos(target, direction){
 			lastTextSpace = 0;
 			addAttr(target, 'data-' + ( rv.start.pos ), direction + ':' + rv.start.value + 'px;');
 			addAttr(target, 'data-' + ( rv.end.pos ), direction + ':' + rv.end.value + 'px;');
-			imgsSpace = $(target).find('img:last').width();
+			// imgsSpace = $(target).find('img:last').width();
+			lastImg = target;
 			inc = rv.end.pos + imgsSpace;
 		break;
 

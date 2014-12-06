@@ -121,7 +121,7 @@ a:link {
   text-decoration: underlined; }
 
 .bloc a:link:after {
-  content: "www";
+  /*content: "www";*/
   margin-left: 0.1em;
   vertical-align: super;
   line-height: 0;
@@ -451,6 +451,15 @@ ul {
   padding-top:10px;
 }
 
-#commander, #points-de-vente{
+#commander div:last-child, #points-de-vente div:last-child {
+  padding-bottom: 30px;
   border-bottom: 1px solid black;
+}
+
+.prochainement{
+  color: #999999;
+}
+
+#commander .prochainement{
+   font: 18px/24px "namo-font-bold", sans-serif;
 }
