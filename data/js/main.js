@@ -19,7 +19,7 @@ function initPosMenu(){
 
 	    var pos = $.data(target[0], 'position');
 	   	menuPos.push({ 
-			position: pos.start.pos + $(window).height() / 2 + more,
+			position:  ( pos.start.pos + more ) + $(window).height() - 2,
 			id: id,
 		});
 	});
@@ -28,47 +28,50 @@ function initPosMenu(){
 	});
 }
 
+function clickMenu(the_id){
+	var target = $(the_id);
+    var more=0;
+    if(!$(the_id).hasClass('anim')){
+    	target = $(the_id).parent('.anim');
+    	more = $(the_id).position().top * 1.2;
+    }
+
+    var pos = $.data(target[0], 'position');
+    $('html, body').animate({  
+        scrollTop: ( pos.start.pos + more ) + $(window).height() ,
+    }, 'slow');
+}
+
 function initClickAndScroll(){
 	$('a[href^="#"]').click(function(){ 
 	    var the_id = $(this).attr("href");
-	    var target;
-	    var more=0;
-	    if(!$(the_id).hasClass('anim')){
-	    	target = $(the_id).parent('.anim');
-	    	more = $(the_id).position().top;
-	    }else{
-	    	target =  $(the_id);
-	    }
-
-	    var pos = $.data(target[0], 'position');
-	    $('html, body').animate({  
-	        scrollTop:pos.start.pos + $(window).height() / 2 + more + 2
-	    }, 'slow');
+	   	clickMenu(the_id);
 	    return false;  
 	});
 }
 
+var imgsSpace = 0;
+var lastTextSpace = 0;
 function setPos(target, direction){
 	var rv = null;
-	var fixedPos = 0;
-
+	
 	switch(direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc + fixedPos - $(window).width()/2 - 300,
+					pos: inc - $(window).width() - lastTextSpace,
 					value: $(window).width(),
 				},
 				end:{
-					pos: (inc + $(target).width()) + 300,
+					pos: inc + $(target).width(),
 					value: -$(target).width(),
 				}
 			};
-			addAttr(target, 'data-' + ( rv.start.pos-600 ), direction + ':' + rv.start.value + 'px;');
-			addAttr(target, 'data-' + ( rv.end.pos+600 ), direction + ':' + rv.end.value + 'px;');
-
-			addAttr(target, 'data-' + ( rv.start.pos+600 ), direction + ':' + (rv.start.value - 900) + 'px;');
-			addAttr(target, 'data-' + (rv.end.pos-600), direction + ':' + (rv.end.value + 900) + 'px;');
+			lastTextSpace = 0;
+			addAttr(target, 'data-' + ( rv.start.pos ), direction + ':' + rv.start.value + 'px;');
+			addAttr(target, 'data-' + ( rv.end.pos ), direction + ':' + rv.end.value + 'px;');
+			imgsSpace = $(target).find('img:last').width();
+			inc = rv.end.pos + imgsSpace;
 		break;
 
 		default:
@@ -76,23 +79,23 @@ function setPos(target, direction){
 		case 'top':
 			rv = {
 				start:{
-					pos: inc - fixedPos - $(window).height()/2 - 200,
+					pos: inc - $(window).height() - imgsSpace,
 					value: $(window).height(),
 				},
 				end:{
 					pos: (inc + $(target).height()),
-					value: -$(target).height()-10,
+					value: -$(target).height(),
 				}
 			};
+			imgsSpace = 0;
 			addAttr(target, 'data-' + rv.start.pos, direction + ':' + rv.start.value + 'px;');
 			addAttr(target, 'data-' + rv.end.pos, direction + ':' + rv.end.value + 'px;');
+			lastTextSpace = $(target).height();
+			inc =  rv.end.pos;
 			break;
 	}
 
 	
-
-
-	inc =  rv.end.pos;
 
 	$(target).css({
 		position:'fixed',
@@ -150,9 +153,9 @@ function processAnim(){
 		});
 	});
 
-	$('.commander').css({
-		height: $(window).height(),
-	});
+	// $('.commander').css({
+	// 	height: $(window).height()/2,
+	// });
 	// c.centerY("logo");
 	logoPos = $('#logo').position();
 	startPos = $($('#logo')[0]).height();
@@ -166,7 +169,7 @@ function processAnim(){
 
 		$(this).children('.flux_images').each(function(){
 			fluxImages = this;
-			$(this).css('z-index', 0);
+			$(this).css('z-index', -1000);
 		});
 		var target;
 		if(fluxImages){
@@ -219,7 +222,6 @@ function imgInit(){
 function imgResize(){
 	$('.flux_images img').each(function(){
 		var originalSize = $(this).data('originalSize');
-		console.log($(this).attr('src'));
 		$(this).css(scaleSize($(window).width(), $(window).height() - 50 * 2, originalSize.width, originalSize.height));
 	});
 }
@@ -234,6 +236,10 @@ function init() {
 		'display':'block',
 		'margin-left':'25px',
 		float:'left',
+	});
+
+	$('#logo h1').click(function(){
+		clickMenu('#a-propos')
 	});
 
 	imgInit();

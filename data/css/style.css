@@ -74,17 +74,11 @@ p, li {
 h2 {
   margin-top: 1.5em; }
 
-#points-de-vente div:not(:first-of-type) {
-  border-top: 1px solid black; }
-
 #points-de-vente h2 {
   margin-bottom: 1.5em; }
 
 #points-de-vente li:not(:first-of-type) {
   margin-top: 1em; }
-
-#commander div:first-of-type {
-  border-top: 1px solid black; }
 
 .centrer {
   text-align: center; }
@@ -133,11 +127,11 @@ a:link {
   line-height: 0;
   font-size: 0.5em; }
 
-.bloc a:hover {
+/*.bloc a:hover {
   color: white;
   background-color: black;
   margin: -0.1em -0.17em;
-  padding: 0.1em 0.17em; }
+  padding: 0.1em 0.17em; }*/
 
 /*
 .bloc a:link:hover:after {
@@ -145,11 +139,11 @@ a:link {
 }
 */
 
-a.inactive {
-  color: black; }
+/*a.inactive {
+  color: black; }*/
 
-a.inactive:hover {
-  color: #666; }
+/*a.inactive:hover {
+  color: #666; }*/
 
 /*
 a.active { color: $couleur-caracteres}
@@ -162,13 +156,13 @@ h1, h2, h3, h4, h5, h6, #navigation {
 h3 {
   font-style: italic; }
 
-#points-de-vente ul li:hover {
+/*#points-de-vente ul li:hover {
   background-color: black;
   color: white;
   margin: -0.1em -0.17em;
-  padding: 0.1em 0.17em; }
+  padding: 0.1em 0.17em; }*/
 
-#points-de-vente ul li:hover:not(:first-of-type) {
+/*#points-de-vente ul li:hover:not(:first-of-type) {
   margin: 0.9em -0.17em -0.1em -0.17em; }
 
 #points-de-vente ul li:hover a {
@@ -176,7 +170,7 @@ h3 {
 
 #points-de-vente ul li:hover a:hover {
   color: #666;
-  background-color: auto; }
+  background-color: auto; }*/
 
 ul {
   list-style: none;
@@ -231,7 +225,7 @@ ul {
 
 #menu .contenu hr {
   width: 48px;
-  margin: 0 auto;
+  margin: 0 232px;
   border: none;
   border-top: 1px solid black; }
 
@@ -442,13 +436,21 @@ ul {
 }
 
 #logo h1{
+  position: relative;
+  margin: auto;
   display: none;
   text-indent: -100000px;
-  width: 100%;
-  height: 100%;
-  background:  url('../../data/img/logo.png') no-repeat 50% 50%;
+  top: 50%;
+  width: 120px;
+  height: 30px;
+  background: url('../../data/img/logo.png') no-repeat 50% 50%;
+  cursor: pointer;
 }
 
 #navigation li.contact{
   padding-top:10px;
+}
+
+#commander, #points-de-vente{
+  border-bottom: 1px solid black;
 }
