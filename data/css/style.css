@@ -121,7 +121,7 @@ a:link {
   text-decoration: underlined; }
 
 .bloc a:link:after {
-  /*content: "www";*/
+  content: "www";
   margin-left: 0.1em;
   vertical-align: super;
   line-height: 0;
