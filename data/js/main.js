@@ -58,13 +58,14 @@ function setPos(target, direction){
 	
 	switch(direction){
 		case 'left':
+			var more = ( lastImg ? $(target).find('img:last').width() : 2*$(target).find('img:first').width()+200 ) - lastTextSpace;
 			rv = {
 				start:{
-					pos: inc - $(window).width() - lastTextSpace + (lastImg ? $(lastImg).find('img:last').width() : 2*$(target).find('img:first').width()+200),
+					pos: inc + more - $(window).width() ,
 					value: $(window).width(),
 				},
 				end:{
-					pos: inc + $(target).width(),
+					pos: inc + more + $(target).width(),
 					value: -$(target).width(),
 				}
 			};
@@ -291,7 +292,7 @@ function init() {
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
 	    		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
-	    		$('a[href="#' + findPos + '"]').css('color','#333333');
+	    		$('a[href="#' + findPos + '"]').css('color','#666666');
 	    		lastFindPos = findPos;
 	    	}
 	    }
