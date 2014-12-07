@@ -458,8 +458,5 @@ ul {
 
 .prochainement{
   color: #999999;
-}
-
-#commander .prochainement{
-   font: 18px/24px "namo-font-bold", sans-serif;
+  font: 16px/20px "namo-font-bold", sans-serif;
 }

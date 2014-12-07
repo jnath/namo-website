@@ -60,7 +60,7 @@ function setPos(target, direction){
 		case 'left':
 			rv = {
 				start:{
-					pos: inc - $(window).width() - lastTextSpace + (lastImg ? $(lastImg).find('img:last').width() : $(target).find('img:first').width()+100),
+					pos: inc - $(window).width() - lastTextSpace + (lastImg ? $(lastImg).find('img:last').width() : 2*$(target).find('img:first').width()+200),
 					value: $(window).width(),
 				},
 				end:{
@@ -290,11 +290,8 @@ function init() {
 	    		}
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
-	    		//$('a[href="#' + lastFindPos + '"]').css('text-decoration','none');
-	    		//$('a[href="#' + findPos + '"]').css('text-decoration','line-through');
-
-	    		$('a[href="#' + lastFindPos + '"]').css('font-style','normal');
-	    		$('a[href="#' + findPos + '"]').css('font-style','italic');
+	    		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
+	    		$('a[href="#' + findPos + '"]').css('color','#333333');
 	    		lastFindPos = findPos;
 	    	}
 	    }
