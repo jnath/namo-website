@@ -212,12 +212,12 @@ function imgInit(){
 		};
 		$(this).data('originalSize', size);
 
-		var mainCanvas = document.createElement("canvas");
-        mainCanvas.width = size.width;
-        mainCanvas.height = size.height;
-        var ctx = mainCanvas.getContext("2d");
-        ctx.drawImage(this, 0, 0, mainCanvas.width, mainCanvas.height);
-        $(this).attr('src', mainCanvas.toDataURL("image/jpeg"));
+		// var mainCanvas = document.createElement("canvas");
+  //       mainCanvas.width = size.width;
+  //       mainCanvas.height = size.height;
+  //       var ctx = mainCanvas.getContext("2d");
+  //       ctx.drawImage(this, 0, 0, mainCanvas.width, mainCanvas.height);
+  //       $(this).attr('src', mainCanvas.toDataURL("image/jpeg"));
 	});
 	imgResize();
 }
