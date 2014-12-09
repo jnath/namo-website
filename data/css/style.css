@@ -156,6 +156,10 @@ h1, h2, h3, h4, h5, h6, #navigation {
 h3 {
   font-style: italic; }
 
+p.credits{
+  font: 16px/20px "namo-font-bold", sans-serif;
+}
+
 /*#points-de-vente ul li:hover {
   background-color: black;
   color: white;
