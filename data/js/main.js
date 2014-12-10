@@ -123,17 +123,27 @@ function removeData(){
 	});
 }
 
+function loadAllImages(images, callback){
+	var nbImages = images.length;
+	for (var i = 0; i < images.length; i++) {
+		var img = images[i];
+		img.onload = function(){
+			nbImages--;
+			if(nbImages === 0)callback();
+		};
+		$(img).attr('src', $(img).attr('data-src'));
+	};
+}
+
 $( document ).ready(function(){
-	jQuery(".flux_images img").lazy({
-		onFinishedAll: function() {
-	        $('.spinner').hide();
-	        $('#logo h1').show();
-			$('#navigation').show();
-			$('#conteneur').show();
-		  	init();
-		  	initClickAndScroll();
-	    },
-	});
+	loadAllImages($(".flux_images img"), function(){
+		$('.spinner').hide();
+        $('#logo h1').show();
+		$('#navigation').show();
+		$('#conteneur').show();
+	  	init();
+	  	initClickAndScroll();
+	});     
 });
 
 var logoPos;
