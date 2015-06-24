@@ -139,7 +139,12 @@ $( document ).ready(function(){
 	loadAllImages($(".flux_images img"), function(){
 		$('.spinner').hide();
         $('#logo h1').show();
-		$('#navigation').show();
+        // only show if the window object innerWidth property
+        // is wider than 499, that mean that we are on mobile
+        // and that we shouldn't show #navigation !
+        if (window.innerWidth > 499) {
+			$('#navigation').show();
+		}
 		$('#conteneur').show();
 	  	init();
 	  	initClickAndScroll();

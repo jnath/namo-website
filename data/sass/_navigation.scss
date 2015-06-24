@@ -22,8 +22,12 @@
 
 #menu {
 	position: relative;
-	width: 400px;
+	width: 500px;
 	margin: auto;
+}
+
+#menu .contenu p  { // numéros
+	padding: 0.5em 0;
 }
 
 .col:first-of-type, .col:nth-of-type(2) {
@@ -31,6 +35,7 @@
 }
 .col:first-of-type{
 	right:0;
+	top:$titrage-interlignage;
 	text-align: right;
 }
 .col:last-of-type{
@@ -41,11 +46,11 @@
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
 	position:relative;
-	top:-0.7em;
-	left: 1.25em;
+	top: -0.75em;
+	left: 0.25em;
 }
 .col:nth-of-type(2){
-	left:0;
+	left:0px;
 }
 
 #menu .contenu hr {
@@ -53,18 +58,4 @@
 	margin:0 auto;
 	border: none;
 	border-top: 1px solid black;
-}
-
-// recalage
-
-//on recentre le « n° »
-#menu .contenu p:first-of-type {
-	position: relative;
-	left: 0.22em;
-}
-
-//recallage de la flêche
-#menu .contenu p:nth-of-type(2) {
-	position: relative;
-	top: -0.14em;
 }
