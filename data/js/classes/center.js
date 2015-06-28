@@ -4,7 +4,6 @@
 
 function Center() {
 	var self = this;
-	console.log("centrage();");
 }
 
 Center.prototype.centerY = function(target,offset) {
