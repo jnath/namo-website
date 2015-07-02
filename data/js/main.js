@@ -4,27 +4,6 @@ var startPos;
 var inc;
 var menuPos;
 
-// var YOUR_MERCHANT_ID = 'AE2BGNRKQDX7E';
-
-// function addPaypalButton(selector){
-// 	$(selector).each(function(){
-// 		var data = $(this).data();
-// 		data.button = 'buynow';
-// 		data.locale = 'fr_FR';
-// 		$(this).html($(this).html().replace('{price}', data.amount));
-// 		var attrs = {
-// 			src : 'https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=' + YOUR_MERCHANT_ID,
-// 		};
-// 		Object.keys(data).map(function(key){
-// 			attrs['data-' + key] = data[key];
-// 		});
-
-// 		var button = $('<script async>');
-// 		button.attr(attrs);
-// 		$(this).append(button);
-// 	});
-// }
-
 function initPosMenu(){
 	menuPos = [];
 	$('#navigation a[href^="#"]').each(function(){ 
