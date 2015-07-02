@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Overlay Element</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <style>
+    .overlay_object{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        padding: 1% 4% 4% 4%; /*chopé sur conteneur, à remettre en scss*/
+        top: 0;
+        left:0;
+        background-color: rgba(0,0,0,.8);
+        overflow:auto;
+    }
+    /*
+    .overlay_object div{
+        background: red;
+        padding:0;
+    }
+    .overlay_object li{
+        background: green;
+    }
+    .overlay_object ul{
+        background: yellow;
+    }*/
+    .closebutton {
+        position: fixed;
+        z-index: 99999;
+        top:.5em;
+        right:1em;
+        color: white;
+    }
+    </style>
+    <link rel="stylesheet" href="data/css/style.css">
+</head>
+<body>
+
+    <span id="abc">Abc.</span>
+    <div id="over_contact" class="overlay_object">
+        <div id="o_contact_CloseButton" class="closebutton">×</div>
+        <div class="bloc" id="contact">
+            <div class="trois colonnes prefix-1">
+                <h2>contact</h2>
+                <p><a href="http://www.facebook.com/larevuenamo">Notre page facebook</a></p>
+                <p>revuenamo@gmail.com</p>
+                <p>Namo a besoin de votre soutien, rejoignez-nous sur <a href="http://fr.ulule.com/namo-creationcollective/">Ulule</a></p>
+            </div>
+            <div class="trois colonnes prefix-1">
+                <p class="credits">Photos : © Sophie Truchot-Voirol<br>
+                    Développement : Jonathan Faivre<br>
+                    Design graphique : Léo Martin & Alexandre Hoyos</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var over_contact = document.getElementById("over_contact");
+        function toggleElement(e) {
+            e.style.visibility == "hidden" ? e.style.visibility = "visible" : e.style.visibility = "hidden";
+        }
+
+        document.getElementById('abc').addEventListener('click', function(evt) {
+            toggleElement(over_contact);
+        }, false);
+        document.getElementById('o_contact_CloseButton').addEventListener('click', function(evt) {
+            toggleElement(over_contact);
+        }, false);
+    </script>
+</body>
+</html>

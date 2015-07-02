@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Overlay Element</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <style>
+    .overlay_object{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        padding: 1% 4% 4% 4%; /*chopé sur conteneur, à remettre en scss*/
+        top: 0;
+        left:0;
+        background-color: rgba(0,0,0,.8);
+        overflow:auto;
+    }
+    /*
+    .overlay_object div{
+        background: red;
+        padding:0;
+    }
+    .overlay_object li{
+        background: green;
+    }
+    .overlay_object ul{
+        background: yellow;
+    }*/
+    .closebutton {
+        position: fixed;
+        z-index: 99999;
+        top:.5em;
+        right:1em;
+        color: white;
+    }
+    .overlay_object .bloc {
+        width: 100%;
+    }
+    </style>
+    <link rel="stylesheet" href="data/css/style.css">
+</head>
+<body>
+
+    <span id="abc">Abc.</span>
+    <div id="over_commander" class="overlay_object">
+        <div id="o_commander_CloseButton" class="closebutton">×</div>
+
+        <div class="bloc" id="commander">
+            <div class="trois colonnes prefix-1">
+                <h2>commander</h2>
+                <p><a href="#">Namo #2 <sup>(12€)</sup></a></p>
+                <p><a href="#">Namo #1 <sup>(12€)</sup></a></p>
+                <p><a href="#">Namo #0 <sup>(12€)</sup></a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var over_commander = document.getElementById("over_commander");
+        function toggleElement(e) {
+            e.style.visibility == "hidden" ? e.style.visibility = "visible" : e.style.visibility = "hidden";
+        }
+
+        document.getElementById('abc').addEventListener('click', function(evt) {
+            toggleElement(over_commander);
+        }, false);
+        document.getElementById('o_commander_CloseButton').addEventListener('click', function(evt) {
+            toggleElement(over_commander);
+        }, false);
+    </script>
+</body>
+</html>

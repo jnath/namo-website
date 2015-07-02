@@ -9,6 +9,7 @@ function initPosMenu(){
 	$('#navigation a[href^="#"]').each(function(){ 
 	    var the_id = $(this).attr("href");
 	    var target = $(the_id);
+	    if(!target || $(the_id).hasClass('popin')) return;
 	    var more=0;
 	    var id = $(target).data('menuId');
 	    if(!$(the_id).hasClass('anim')){
@@ -28,25 +29,32 @@ function initPosMenu(){
 	});
 }
 
+function showPopin(the_id){
+	$(the_id).show();
+}
+
 function clickMenu(the_id){
 	var target = $(the_id);
-    var more=0;
-    if(!$(the_id).hasClass('anim')){
-    	target = $(the_id).parent('.anim');
-    	more = $(the_id).position().top -  $(window).height() / 2;
-    }
+	if(!target || $(the_id).hasClass('popin')){
+		showPopin(the_id);
+		return;
+	}
+  var more=0;
+  if(!$(the_id).hasClass('anim')){
+  	target = $(the_id).parent('.anim');
+  	more = $(the_id).position().top -  $(window).height() / 2;
+  }
 
-    var pos = $.data(target[0], 'position');
-    $('html, body').animate({  
-        scrollTop: ( pos.start.pos + more ) + $(window).height() ,
-    }, 'slow');
+  var pos = $.data(target[0], 'position');
+  $('html, body').animate({  
+      scrollTop: ( pos.start.pos + more ) + $(window).height() ,
+  }, 'slow');
 }
 
 function initClickAndScroll(){
-	$('a[href^="#"]').click(function(){ 
-	    var the_id = $(this).attr("href");
-	   	clickMenu(the_id);
-	    return false;  
+	$('a[href^="#"]').click(function(){
+   	clickMenu($(this).attr("href"));
+    // return false;  
 	});
 }
 
@@ -139,7 +147,12 @@ $( document ).ready(function(){
 	loadAllImages($(".flux_images img"), function(){
 		$('.spinner').hide();
         $('#logo h1').show();
-		$('#navigation').show();
+        // only show if the window object innerWidth property
+        // is wider than 499, that mean that we are on mobile
+        // and that we shouldn't show #navigation !
+        if (window.innerWidth > 499) {
+			$('#navigation').show();
+		}
 		$('#conteneur').show();
 	  	init();
 	  	initClickAndScroll();
@@ -333,7 +346,25 @@ function init() {
 		resize();
 	});
 
-	
+	$('.popin').each(function(){
+		$(this).css({
+		  'z-index': 100000000,
+		});
+		$(this).click(function(e){
+			if(e.target.localName === 'a'){
+				return;
+			}
+			$(this).hide();
+		});
+	});
+	// addPaypalButton('.popin p');
+
+	var pageName = document.URL.split('#')[1];
+	var t=$('#' + pageName);
+	if(t && t.hasClass('popin')){
+		t.show();
+	}
+
 	c.centerY("navigation");
 	initAndResize();
 };

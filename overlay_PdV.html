@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Overlay Element</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <style>
+    .overlay_object{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        padding: 1% 4% 4% 4%; /*chopé sur conteneur, à remettre en scss*/
+        top: 0;
+        left:0;
+        background-color: rgba(0,0,0,.8);
+        overflow:auto;
+    }
+    /*
+    .overlay_object div{
+        background: red;
+        padding:0;
+    }
+    .overlay_object li{
+        background: green;
+    }
+    .overlay_object ul{
+        background: yellow;
+    }*/
+    .closebutton {
+        position: fixed;
+        z-index: 99999;
+        top:.5em;
+        right:1em;
+        color: white;
+    }
+    </style>
+    <link rel="stylesheet" href="data/css/style.css">
+</head>
+<body>
+
+    <span id="abc">Abc.</span>
+    <div id="PointsDeVente" class="overlay_object">
+        <div id="PdVCloseButton" class="closebutton">×</div>
+        <div class="bloc" id="points-de-vente">
+            <div class="trois colonnes prefix-1">
+                <h2>Points de vente</h2>
+            </div>
+
+            <div class="trois colonnes prefix-1">
+                <h3>Paris 3<sup>e</sup></h3>
+                <ul>
+                    <li>Librairie LO/A —<br>17 Rue Notre Dame de Nazareth, 75003 Paris</li>
+                    <li >Librairie du centre culturel suisse —<br>32 Rue des Francs Bourgeois, 75003 Paris</li>
+                </ul>
+            </div>
+
+            <div class="trois colonnes prefix-1">
+                <h3>Paris 4<sup>e</sup></h3>
+                <ul>
+                    <li>Librairie Flammarion Centre Pompidou —<br>
+                        19, rue Beaubourg, 75004 Paris</li>
+                        <li >Librairie de la Galerie du jour agnès b. —<br>
+                            44, rue Quincampoix, 75004 Paris</li>
+                </ul>
+            </div>
+
+             <div class="trois colonnes prefix-1">
+                <h3>Paris 5<sup>e</sup></h3>
+                <ul>
+                    <li>Librairie Compagnie —<br>58, rue des Écoles, 75005 Paris</li>
+                </ul>
+            </div>
+
+                    <div class="trois colonnes prefix-1">
+                        <h3>Paris 14<sup>e</sup></h3>
+                        <ul>
+                            <li>Librairie Tropiques —<br>63 Rue Raymond Losserand, 75014 Paris</li>
+                        </ul>
+                    </div>
+
+                    <div class="trois colonnes prefix-1">
+                        <h3>Paris 16<sup>e</sup></h3>
+                        <ul>
+                            <li>Librairie du Palais de Tokyo —<br>13, avenue du Président Wilson, 75 016 Paris</li>
+                        </ul>
+                    </div>
+
+                    <div class="trois colonnes prefix-1">
+                        <h3>Paris 20<sup>e</sup></h3>
+                        <ul>
+                            <li>Librairie Monte-en-l’air —<br>Librairie au 2, rue de la Mare, 75020 Paris</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var PointsDeVente = document.getElementById("PointsDeVente");
+        function toggleElement(e) {
+            e.style.visibility == "hidden" ? e.style.visibility = "visible" : e.style.visibility = "hidden";
+        }
+
+        document.getElementById('abc').addEventListener('click', function(evt) {
+            toggleElement(PointsDeVente);
+        }, false);
+        document.getElementById('PdVCloseButton').addEventListener('click', function(evt) {
+            toggleElement(PointsDeVente);
+        }, false);
+    </script>
+</body>
+</html>
