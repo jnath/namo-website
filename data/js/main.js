@@ -31,21 +31,29 @@ function initPosMenu(){
 	});
 }
 
+function displayMenuA(the_id, color){
+	$('a[href="' + the_id + '"]').css('color',color);
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
+	}
+}
+
+function restorMenuA(the_id, color){
+	$('a[href="' + the_id + '"]').css('color','#000000');
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color',color);
+	}
+}
+
 function hidePopin(the_id){
 	popinDisplayed = null;
-	if(lastFindPos){
-		$('a[href="#' + lastFindPos + '"]').css('color','#666666');
-	}
-	$('a[href="' + the_id + '"]').css('color','#000000');
+	restorMenuA(the_id, '#666666');
 	$(the_id).hide();
 }
 
 function showPopin(the_id){
 	popinDisplayed = the_id;
-	if(lastFindPos){
-		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
-	}
-	$('a[href="' + the_id + '"]').css('color','#FFFFFF');
+	displayMenuA(the_id, '#FFFFFF');
 	$(the_id).show();
 }
 
@@ -327,15 +335,14 @@ function init() {
 		    		}
 	    		}
 	    	}
-	    	if(findPos && lastFindPos !== findPos){
-	    		if(popinDisplayed){
-	    			lastFindPos = findPos;
-	    			return;
-	    		}
-	    		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
-	    		$('a[href="#' + findPos + '"]').css('color','#666666');
-	    		lastFindPos = findPos;
-	    	}
+	    	// if(findPos && lastFindPos !== findPos){
+	    	// 	if(popinDisplayed){
+	    	// 		lastFindPos = findPos;
+	    	// 		return;
+	    	// 	}
+	    	// 	displayMenuA('#' + findPos, '#666666')
+	    	// 	lastFindPos = findPos;
+	    	// }
 	    }
 	});
 

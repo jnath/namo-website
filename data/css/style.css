@@ -503,9 +503,9 @@ ul {
 }
 
 #commander ul {
-  margin-left: 150px;
+  margin-left: 200px;
   position: fixed;
-  bottom: 10%;
+  bottom: 100px;
 }
 
 .popin{
