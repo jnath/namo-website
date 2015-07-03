@@ -3,12 +3,15 @@ var c;
 var startPos;
 var inc;
 var menuPos;
+var popinDisplayed = false;
+var lastFindPos;
 
 function initPosMenu(){
 	menuPos = [];
 	$('#navigation a[href^="#"]').each(function(){ 
 	    var the_id = $(this).attr("href");
 	    var target = $(the_id);
+	    if(!target || $(the_id).hasClass('popin')) return;
 	    var more=0;
 	    var id = $(target).data('menuId');
 	    if(!$(the_id).hasClass('anim')){
@@ -28,25 +31,58 @@ function initPosMenu(){
 	});
 }
 
+function displayMenuA(the_id, color){
+	$('a[href="' + the_id + '"]').css('color',color);
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
+	}
+}
+
+function restorMenuA(the_id, color){
+	$('a[href="' + the_id + '"]').css('color','#000000');
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color',color);
+	}
+}
+
+function hidePopin(the_id){
+	popinDisplayed = null;
+	restorMenuA(the_id, '#666666');
+	$(the_id).hide();
+}
+
+function showPopin(the_id){
+	popinDisplayed = the_id;
+	displayMenuA(the_id, '#FFFFFF');
+	$(the_id).show();
+}
+
 function clickMenu(the_id){
 	var target = $(the_id);
-    var more=0;
-    if(!$(the_id).hasClass('anim')){
-    	target = $(the_id).parent('.anim');
-    	more = $(the_id).position().top -  $(window).height() / 2;
-    }
+	if(!target || $(the_id).hasClass('popin')){
+		showPopin(the_id);
+		return;
+	}
+	$('.popin').each(function(){
+		hidePopin('#' + $(this).attr('id'));
+	});
+	popinDisplayed = null;
+  var more=0;
+  if(!$(the_id).hasClass('anim')){
+  	target = $(the_id).parent('.anim');
+  	more = $(the_id).position().top -  $(window).height() / 2;
+  }
 
-    var pos = $.data(target[0], 'position');
-    $('html, body').animate({  
-        scrollTop: ( pos.start.pos + more ) + $(window).height() ,
-    }, 'slow');
+  var pos = $.data(target[0], 'position');
+  $('html, body').animate({  
+      scrollTop: ( pos.start.pos + more ) + $(window).height() ,
+  }, 'slow');
 }
 
 function initClickAndScroll(){
-	$('a[href^="#"]').click(function(){ 
-	    var the_id = $(this).attr("href");
-	   	clickMenu(the_id);
-	    return false;  
+	$('a[href^="#"]').click(function(){
+   	clickMenu($(this).attr("href"));
+    // return false;  
 	});
 }
 
@@ -273,7 +309,6 @@ function init() {
 	inc = startPos;
 	processAnim();
 
-	var lastFindPos;
 	var scrollDisplay;
 	var divsDisplay = [];
 	s = skrollr.init({
@@ -300,11 +335,14 @@ function init() {
 		    		}
 	    		}
 	    	}
-	    	if(findPos && lastFindPos !== findPos){
-	    		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
-	    		$('a[href="#' + findPos + '"]').css('color','#666666');
-	    		lastFindPos = findPos;
-	    	}
+	    	// if(findPos && lastFindPos !== findPos){
+	    	// 	if(popinDisplayed){
+	    	// 		lastFindPos = findPos;
+	    	// 		return;
+	    	// 	}
+	    	// 	displayMenuA('#' + findPos, '#666666')
+	    	// 	lastFindPos = findPos;
+	    	// }
 	    }
 	});
 
@@ -333,7 +371,25 @@ function init() {
 		resize();
 	});
 
-	
+	$('.popin').each(function(){
+		$(this).css({
+		  'z-index': 100000000,
+		});
+		$(this).click(function(e){
+			if(e.target.localName === 'a'){
+				return;
+			}
+			hidePopin('#' + $(this).attr('id'));
+		});
+	});
+	// addPaypalButton('.popin p');
+
+	var pageName = document.URL.split('#')[1];
+	var t=$('#' + pageName);
+	if(t && t.hasClass('popin')){
+		showPopin('#' + pageName);
+	}
+
 	c.centerY("navigation");
 	initAndResize();
 };
