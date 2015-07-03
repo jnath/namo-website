@@ -3,27 +3,8 @@ var c;
 var startPos;
 var inc;
 var menuPos;
-
-// var YOUR_MERCHANT_ID = 'AE2BGNRKQDX7E';
-
-// function addPaypalButton(selector){
-// 	$(selector).each(function(){
-// 		var data = $(this).data();
-// 		data.button = 'buynow';
-// 		data.locale = 'fr_FR';
-// 		$(this).html($(this).html().replace('{price}', data.amount));
-// 		var attrs = {
-// 			src : 'https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=' + YOUR_MERCHANT_ID,
-// 		};
-// 		Object.keys(data).map(function(key){
-// 			attrs['data-' + key] = data[key];
-// 		});
-
-// 		var button = $('<script async>');
-// 		button.attr(attrs);
-// 		$(this).append(button);
-// 	});
-// }
+var popinDisplayed = false;
+var lastFindPos;
 
 function initPosMenu(){
 	menuPos = [];
@@ -50,7 +31,21 @@ function initPosMenu(){
 	});
 }
 
+function hidePopin(the_id){
+	popinDisplayed = null;
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color','#666666');
+	}
+	$('a[href="' + the_id + '"]').css('color','#000000');
+	$(the_id).hide();
+}
+
 function showPopin(the_id){
+	popinDisplayed = the_id;
+	if(lastFindPos){
+		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
+	}
+	$('a[href="' + the_id + '"]').css('color','#FFFFFF');
 	$(the_id).show();
 }
 
@@ -60,6 +55,10 @@ function clickMenu(the_id){
 		showPopin(the_id);
 		return;
 	}
+	$('.popin').each(function(){
+		hidePopin('#' + $(this).attr('id'));
+	});
+	popinDisplayed = null;
   var more=0;
   if(!$(the_id).hasClass('anim')){
   	target = $(the_id).parent('.anim');
@@ -302,7 +301,6 @@ function init() {
 	inc = startPos;
 	processAnim();
 
-	var lastFindPos;
 	var scrollDisplay;
 	var divsDisplay = [];
 	s = skrollr.init({
@@ -330,6 +328,10 @@ function init() {
 	    		}
 	    	}
 	    	if(findPos && lastFindPos !== findPos){
+	    		if(popinDisplayed){
+	    			lastFindPos = findPos;
+	    			return;
+	    		}
 	    		$('a[href="#' + lastFindPos + '"]').css('color','#000000');
 	    		$('a[href="#' + findPos + '"]').css('color','#666666');
 	    		lastFindPos = findPos;
@@ -370,7 +372,7 @@ function init() {
 			if(e.target.localName === 'a'){
 				return;
 			}
-			$(this).hide();
+			hidePopin('#' + $(this).attr('id'));
 		});
 	});
 	// addPaypalButton('.popin p');
@@ -378,7 +380,7 @@ function init() {
 	var pageName = document.URL.split('#')[1];
 	var t=$('#' + pageName);
 	if(t && t.hasClass('popin')){
-		t.show();
+		showPopin('#' + pageName);
 	}
 
 	c.centerY("navigation");

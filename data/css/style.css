@@ -194,7 +194,8 @@ ul {
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg); }
+  transform: rotate(-90deg); 
+  z-index: 1000000000; }
 
 #navigation * {
   margin: 0;
@@ -487,10 +488,10 @@ ul {
   padding-top:10px;
 }
 
-#commander div:last-child, #points-de-vente div:last-child {
+/*#commander div:last-child, #points-de-vente div:last-child {
   padding-bottom: 30px;
   border-bottom: 1px solid white;
-}
+}*/
 
 #commander a, #commander a:link {
   color: white;
@@ -501,6 +502,12 @@ ul {
   font: 14px/18px "namo-font-bold", sans-serif;
 }
 
+#commander ul {
+  margin-left: 150px;
+  position: fixed;
+  bottom: 10%;
+}
+
 .popin{
   display: none;
   position: fixed;
@@ -508,7 +515,7 @@ ul {
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  z-index: 100000000,
+  z-index: 100000000;
 }
 
 /*form.paypal-button{
