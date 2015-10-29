@@ -444,7 +444,7 @@ ul {
 
 #logo p{
   position: absolute;
-  top: calc(50% - 50px);
+  top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -474,7 +474,7 @@ ul {
 
 #logo a#buttonHomeMore{
   position: absolute;
-  bottom: calc( 50% - 50px);
+  top: calc(50% + 25px + 36px);
   left: 50%;
   -webkit-transform: translate(-50%, 0);
   -moz-transform: translate(-50%, 0);
