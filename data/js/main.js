@@ -365,8 +365,8 @@ function init() {
 	if(t){
         if(t.hasClass('popin')){
 		  showPopin('#' + pageName);
-        }else{
-            clickMenu('#' + pageName);
+        }else if($('#' + pageName)[0]){
+          clickMenu('#' + pageName);
         }
 	}
     
@@ -378,7 +378,8 @@ function init() {
         }
         mobileMenuShow = true;
         $('#menu').show();
-    })
+    });
+    
     
     document.onmousewheel =  function(e){
         if(popinDisplayed){
