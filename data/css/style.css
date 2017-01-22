@@ -368,8 +368,9 @@ ul {
   z-index: 1;
 }
 
-#logo p{
+#logo div.center{
   position: absolute;
+  width:75%;
   top: calc(50% - 45px);
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -378,6 +379,10 @@ ul {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); 
   text-align: center; 
+}
+
+#logo p {
+    text-shadow: 0px 0px 50px #999;
 }
 
 #logo a{
@@ -399,7 +404,6 @@ ul {
 }
 
 #logo a#buttonHomeMore{
-  position: absolute;
   top: calc(50% + 36px - 20px);
   left: 50%;
   -webkit-transform: translate(-50%, 0);

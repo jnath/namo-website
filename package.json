@@ -1,0 +1,22 @@
+{
+  "name": "namo-website",
+  "version": "1.0.0",
+  "description": "* 1. Description * 2. Structure du projet * 3. Spécifications",
+  "main": "index.js",
+  "scripts": {
+    "start": "hs -p 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnath/namo-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnath/namo-website/issues"
+  },
+  "homepage": "https://github.com/jnath/namo-website#readme",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
