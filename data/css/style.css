@@ -221,7 +221,7 @@ ul {
 
 .col:nth-of-type(2) {
     position: fixed;
-    transform: translate(83px, 50px)
+    transform: translate(83px, 0px)
 }
 
 .col:nth-of-type(2) p {
@@ -533,7 +533,7 @@ button.close{
     }
     
     .col:nth-of-type(2) {
-        transform: translate(54px, 50px)
+        transform: translate(54px, 0px)
     }
     
     #logo a#buttonHomeMore{
