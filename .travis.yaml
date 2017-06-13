@@ -1,0 +1,7 @@
+# safelist
+branches:
+  only:
+  - master
+after_success:
+  - $USERNAME
+  - $PASSWORD
