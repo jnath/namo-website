@@ -7,5 +7,5 @@ branches:
 after_success:
   - find ./data/ -type f -exec curl --ftp-create-dirs -T {} -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/tmp/{} \;
   - curl --ftp-create-dirs -T index.html -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/tmp/index.html
-  - curl -Q "RNFR directory" -Q "RNTO backup-$(date +%Y-%m-%d_%H-%M-%S)" -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/
-  - curl -Q "RNFR tmp" -Q "RNTO directory" -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/
+  - curl -Q "RNFR www" -Q "RNTO backup-$(date +%Y-%m-%d_%H-%M-%S)" -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/
+  - curl -Q "RNFR tmp" -Q "RNTO www" -u $USERNAME:$PASSWORD ftp://ftp.cluster013.ovh.net/
